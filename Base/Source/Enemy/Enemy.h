@@ -42,7 +42,7 @@ public:
 	Vector3 GetUp(void) const;
 	//Get terrain for player info
 	GroundEntity* GetTerrain(void);
-
+	GenericEntity* bCube;
 	//Update
 	void Update(double dt = 0.0333f);
 	//Constrain position within borders

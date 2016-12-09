@@ -4,6 +4,8 @@
 #include "RenderHelper.h"
 #include "MyMath.h"
 #include "MeshBuilder.h"
+#include "SceneNode.h"
+#include "SceneGraph.h"
 
 CEnemy::CEnemy() : GenericEntity(NULL)
 , defaultPosition(Vector3(0.0f, 0.0f, 0.0f))
@@ -19,13 +21,15 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	defaultPosition.SetZero();
 	defaultTarget.SetZero();
 	defaultUp.Set(0, 1, 0);
-	InitLOD("cubeSG", "sphere", "cube");
+
+	InitLOD("m24r", "sphere", "cube");
 	//Initialise the collider
 	this->SetCollider(true);
 	this->SetAABB(Vector3(1, 1, 1), Vector3(-1, -1, -1));
 	maxBoundary.Set(1, 1, 1);
 	minBoundary.Set(-1, -1, -1);
 	up.Set(0.0f, 1.0f, 0.0f);
+
 }
 
 CEnemy::~CEnemy()
@@ -39,17 +43,13 @@ void CEnemy::Init(void)
 	//target.Set(10.0f, 0.0f, 450.f);
 	//moveto.Set(Math::RandIntMinMax(100, 200), 0.0f, Math::RandIntMinMax(100, 200));
 	//Set boundary
-	
-	//Set speed
-	m_dSpeed = 1.0;
+	CSceneNode* enemyNode = CSceneGraph::GetInstance()->AddNode(this);
 
-	//Initialise the LOD meshes
-	InitLOD("cube", "sphere", "cubeSG");
-
-	
-
-	//Add to entity manager
-	EntityManager::GetInstance()->AddEntity(this, true);
+	bCube = Create::Entity("cube", Vector3(position.x, position.y - 5, position.z));
+	bCube->SetCollider(true);
+	bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	bCube->InitLOD("cubeSG", "lightball", "cubeSG");
+	CSceneNode* node = enemyNode->AddChild(bCube);
 }
 
 void CEnemy::Reset(void)
@@ -117,7 +117,8 @@ void CEnemy::Update(double dt)
 		*/		
 	 distance = (position - target).LengthSquared();
 	 
-	
+	 bCube->SetPosition(Vector3(position.x, position.y - 5, position.z));
+
 	/*if (distance > 100)
 	{
 		Vector3 direction = (moveto - position).Normalize();
@@ -177,6 +178,7 @@ CEnemy* Create::Enemy(
 	result->SetCollider(true);
 	result->SetSpeed(m_fSpeed);
 	result->SetTerrain(m_pTerrain);
+	result->Init();
 	EntityManager::GetInstance()->AddEntity(result, true);
 	return result;
 }
