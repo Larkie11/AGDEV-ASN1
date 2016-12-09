@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Application.cpp" />
+    <ClCompile Include="Source\Enemy\CEnemyController.cpp" />
+    <ClCompile Include="Source\Enemy\Enemy.cpp" />
+    <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\FPSCamera.cpp" />
+    <ClCompile Include="Source\GenericEntity.cpp" />
+    <ClCompile Include="Source\GroundEntity.cpp" />
+    <ClCompile Include="Source\LevelOfDetails\CLevelOfDetails.cpp" />
+    <ClCompile Include="Source\Light.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\OBJMesh.cpp" />
+    <ClCompile Include="Source\PlayerInfo\PlayerInfo.cpp" />
+    <ClCompile Include="Source\Projectile\Grenade.cpp" />
+    <ClCompile Include="Source\Projectile\Laser.cpp" />
+    <ClCompile Include="Source\Projectile\Projectile.cpp" />
+    <ClCompile Include="Source\SceneGraph\SceneGraph.cpp" />
+    <ClCompile Include="Source\SceneGraph\SceneNode.cpp" />
+    <ClCompile Include="Source\SceneGraph\Transform.cpp" />
+    <ClCompile Include="Source\SceneGraph\UpdateTransformation.cpp" />
+    <ClCompile Include="Source\SceneText.cpp" />
+    <ClCompile Include="Source\SkyBox\SkyBoxEntity.cpp" />
+    <ClCompile Include="Source\SpatialPartition\Grid.cpp" />
+    <ClCompile Include="Source\SpatialPartition\SpatialPartition.cpp" />
+    <ClCompile Include="Source\SpriteEntity.cpp" />
+    <ClCompile Include="Source\TextEntity.cpp" />
+    <ClCompile Include="Source\WeaponInfo\GrenadeThrow.cpp" />
+    <ClCompile Include="Source\WeaponInfo\LaserBlaster.cpp" />
+    <ClCompile Include="Source\WeaponInfo\Pistol.cpp" />
+    <ClCompile Include="Source\WeaponInfo\WeaponInfo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Application.h" />
+    <ClInclude Include="Source\Enemy\CEnemyController.h" />
+    <ClInclude Include="Source\Enemy\Enemy.h" />
+    <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\FPSCamera.h" />
+    <ClInclude Include="Source\GenericEntity.h" />
+    <ClInclude Include="Source\GroundEntity.h" />
+    <ClInclude Include="Source\LevelOfDetails\CLevelOfDetails.h" />
+    <ClInclude Include="Source\Light.h" />
+    <ClInclude Include="Source\OBJMesh.h" />
+    <ClInclude Include="Source\PlayerInfo\PlayerInfo.h" />
+    <ClInclude Include="Source\Projectile\Grenade.h" />
+    <ClInclude Include="Source\Projectile\Laser.h" />
+    <ClInclude Include="Source\Projectile\Projectile.h" />
+    <ClInclude Include="Source\SceneGraph\SceneGraph.h" />
+    <ClInclude Include="Source\SceneGraph\SceneNode.h" />
+    <ClInclude Include="Source\SceneGraph\Transform.h" />
+    <ClInclude Include="Source\SceneGraph\UpdateTransformation.h" />
+    <ClInclude Include="Source\SceneText.h" />
+    <ClInclude Include="Source\SkyBox\SkyBoxEntity.h" />
+    <ClInclude Include="Source\SpatialPartition\Grid.h" />
+    <ClInclude Include="Source\SpatialPartition\SpatialPartition.h" />
+    <ClInclude Include="Source\SpriteEntity.h" />
+    <ClInclude Include="Source\TextEntity.h" />
+    <ClInclude Include="Source\WeaponInfo\GrenadeThrow.h" />
+    <ClInclude Include="Source\WeaponInfo\LaserBlaster.h" />
+    <ClInclude Include="Source\WeaponInfo\Pistol.h" />
+    <ClInclude Include="Source\WeaponInfo\WeaponInfo.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9B172635-4E2B-46F1-A403-08F4194D00F5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Base</RootNamespace>
+    <ProjectName>Base</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_VARIADIC_MAX=10;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Common/Source;$(SolutionDir)/glfw/include;$(SolutionDir)/glew/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)/glfw/lib-msvc100;$(SolutionDir)/glew/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Common.lib;winmm.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_VARIADIC_MAX=10;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Common/Source;$(SolutionDir)/glew/include;$(SolutionDir)/glfw/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration);$(SolutionDir)/glfw/lib-msvc100;$(SolutionDir)/glew/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Common.lib;winmm.lib;opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
