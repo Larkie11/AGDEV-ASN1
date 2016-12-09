@@ -8,6 +8,7 @@
 #include "../WeaponInfo/Pistol.h"
 #include "../WeaponInfo/LaserBlaster.h"
 #include "../WeaponInfo/GrenadeThrow.h"
+#include "../WeaponInfo/Shotgun.h"
 
 // Allocating and initializing CPlayerInfo's static data member.  
 // The pointer is allocated but not the object's constructor.
@@ -52,6 +53,7 @@ void CPlayerInfo::Init(void)
 	defaultTarget.Set(0,0,0);
 	defaultUp.Set(0,1,0);
 
+	changeWeapon = true;
 	// Set the current values
 	position.Set(0, 0, 10);
 	target.Set(0, 0, 0);
@@ -61,9 +63,8 @@ void CPlayerInfo::Init(void)
 	maxBoundary.Set(1,1,1);
 	minBoundary.Set(-1, -1, -1);
 
-	// Set the pistol as the primary weapon
-	primaryWeapon = new CPistol();
-	primaryWeapon->Init();
+	wt = WT_PISTOL;
+
 	// Set the laser blaster as the secondary weapon
 	//secondaryWeapon = new CLaserBlaster();
 	//secondaryWeapon->Init();
@@ -266,7 +267,10 @@ void CPlayerInfo::UpdateFreeFall(double dt)
 		m_bFallDownwards = false;
 	}
 }
-
+CPlayerInfo::WeaponType CPlayerInfo::GetWeaponType()
+{
+	return wt;
+}
 /********************************************************************************
  Hero Update
  ********************************************************************************/
@@ -407,7 +411,30 @@ void CPlayerInfo::Update(double dt)
 	{
 		SetToJumpUpwards(true);
 	}
-
+	if (KeyboardController::GetInstance()->IsKeyPressed('1'))
+	{
+		changeWeapon = true;
+		wt = WT_GUN;
+	}
+	if (KeyboardController::GetInstance()->IsKeyPressed('2'))
+	{
+		changeWeapon = true;
+		wt = WT_PISTOL;
+	}
+	if (wt == WT_PISTOL && changeWeapon)
+	{
+		// Set the pistol as the primary weapon
+		primaryWeapon = new CPistol();
+		primaryWeapon->Init();
+		changeWeapon = false;
+	}
+	if (wt == WT_GUN && changeWeapon)
+	{
+		// Set the pistol as the primary weapon
+		primaryWeapon = new CShotGun();
+		primaryWeapon->Init();
+		changeWeapon = false;
+	}
 	// Update the weapons
 	if (KeyboardController::GetInstance()->IsKeyReleased('R'))
 	{

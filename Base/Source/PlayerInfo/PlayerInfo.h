@@ -4,13 +4,21 @@
 #include "../GroundEntity.h"
 #include "../WeaponInfo/WeaponInfo.h"
 
+
 class CPlayerInfo
 {
+	
 protected:
 	static CPlayerInfo *s_instance;
 	CPlayerInfo(void);
 
 public:
+	enum WeaponType
+	{
+		WT_PISTOL,
+		WT_GUN,
+		WT_MAX,
+	};
 	static CPlayerInfo *GetInstance()
 	{
 		if (!s_instance)
@@ -64,7 +72,7 @@ public:
 	void SetBoundary(Vector3 max, Vector3 min);
 	// Set the terrain for the player info
 	void SetTerrain(GroundEntity* m_pTerrain);
-
+	WeaponType GetWeaponType();
 	// Get position
 	Vector3 GetPos(void) const;
 	// Get target
@@ -102,6 +110,8 @@ private:
 	Vector3 maxBoundary, minBoundary;
 	GroundEntity* m_pTerrain;
 
+	bool changeWeapon;
+	WeaponType wt;
 	double m_dSpeed;
 	double m_dAcceleration;
 

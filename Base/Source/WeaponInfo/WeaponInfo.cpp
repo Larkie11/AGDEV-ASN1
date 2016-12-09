@@ -1,6 +1,6 @@
 #include "WeaponInfo.h"
 #include "../Projectile/Projectile.h"
-
+#include "../PlayerInfo/PlayerInfo.h"
 #include <iostream>
 using namespace std;
 
@@ -144,18 +144,36 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 		// If there is still ammo in the magazine, then fire
 		if (magRounds > 0)
 		{
-			// Create a projectile with a cube mesh. Its position and direction is same as the player.
-			// It will last for 3.0 seconds and travel at 500 units per second
-			CProjectile* aProjectile = Create::Projectile("cube", 
-															position, 
-															(target - position).Normalized(), 
-															2.0f, 
-															10.0f,
-															_source);
+			if (_source->GetWeaponType() == CPlayerInfo::WT_PISTOL)
+			{
+				// Create a projectile with a cube mesh. Its position and direction is same as the player.
+				// It will last for 3.0 seconds and travel at 500 units per second
+				CProjectile* aProjectile = Create::Projectile("cube",
+				position,
+				(target - position).Normalized(),
+				2.0f,
+				10.0f,
+				_source);
 			aProjectile->SetCollider(true);
 			aProjectile->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
 			bFire = false;
 			magRounds--;
+			}
+			if (_source->GetWeaponType() == CPlayerInfo::WT_GUN)
+			{
+				// Create a projectile with a cube mesh. Its position and direction is same as the player.
+				// It will last for 3.0 seconds and travel at 500 units per second
+				CProjectile* aProjectile = Create::Projectile("cubeSG",
+					position,
+					(target - position).Normalized(),
+					2.0f,
+					10.0f,
+					_source);
+				aProjectile->SetCollider(true);
+				aProjectile->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+				bFire = false;
+				magRounds--;
+			}
 		}
 	}
 	else

@@ -39,6 +39,7 @@
     <ClCompile Include="Source\WeaponInfo\GrenadeThrow.cpp" />
     <ClCompile Include="Source\WeaponInfo\LaserBlaster.cpp" />
     <ClCompile Include="Source\WeaponInfo\Pistol.cpp" />
+    <ClCompile Include="Source\WeaponInfo\Shotgun.cpp" />
     <ClCompile Include="Source\WeaponInfo\WeaponInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +70,7 @@
     <ClInclude Include="Source\WeaponInfo\GrenadeThrow.h" />
     <ClInclude Include="Source\WeaponInfo\LaserBlaster.h" />
     <ClInclude Include="Source\WeaponInfo\Pistol.h" />
+    <ClInclude Include="Source\WeaponInfo\Shotgun.h" />
     <ClInclude Include="Source\WeaponInfo\WeaponInfo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -4,6 +4,12 @@
 
 class CPlayerInfo;
 
+enum WeaponType
+{
+	WT_PISTOL,
+	WT_GUN,
+	WT_MAX,
+};
 class CWeaponInfo
 {
 public:
@@ -18,7 +24,6 @@ protected:
 	int totalRounds;
 	// The max total number of rounds currently carried by this player
 	int maxTotalRounds;
-
 	// The time between shots in milliseconds
 	double timeBetweenShots;
 	// The elapsed time (between shots) in milliseconds
@@ -68,7 +73,6 @@ public:
 	void Reload(void);
 	// Add rounds
 	void AddRounds(const int newRounds);
-
 	// Print Self
 	void PrintSelf(void);
 };
