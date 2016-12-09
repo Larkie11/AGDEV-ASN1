@@ -14,6 +14,9 @@
 // The pointer is allocated but not the object's constructor.
 CPlayerInfo *CPlayerInfo::s_instance = 0;
 
+CPistol* cpistol;
+CShotGun* cshotgun;
+
 CPlayerInfo::CPlayerInfo(void)
 	: m_dSpeed(40.0)
 	, m_dAcceleration(10.0)
@@ -54,6 +57,8 @@ void CPlayerInfo::Init(void)
 	defaultUp.Set(0,1,0);
 
 	changeWeapon = true;
+	cpistol = new CPistol();
+	cshotgun = new CShotGun();
 	// Set the current values
 	position.Set(0, 0, 10);
 	target.Set(0, 0, 0);
@@ -64,7 +69,10 @@ void CPlayerInfo::Init(void)
 	minBoundary.Set(-1, -1, -1);
 
 	wt = WT_PISTOL;
-
+	primaryWeapon = cpistol;
+	//primaryWeapon->Init();
+	cshotgun->Init();
+	cpistol->Init();
 	// Set the laser blaster as the secondary weapon
 	//secondaryWeapon = new CLaserBlaster();
 	//secondaryWeapon->Init();
@@ -271,6 +279,14 @@ CPlayerInfo::WeaponType CPlayerInfo::GetWeaponType()
 {
 	return wt;
 }
+int CPlayerInfo::GetMagRound()
+{
+	return primaryWeapon->GetMagRound();
+}
+int CPlayerInfo::GetTotalRound()
+{
+	return primaryWeapon->GetTotalRound();
+}
 /********************************************************************************
  Hero Update
  ********************************************************************************/
@@ -424,15 +440,13 @@ void CPlayerInfo::Update(double dt)
 	if (wt == WT_PISTOL && changeWeapon)
 	{
 		// Set the pistol as the primary weapon
-		primaryWeapon = new CPistol();
-		primaryWeapon->Init();
+		primaryWeapon = cpistol;
 		changeWeapon = false;
 	}
 	if (wt == WT_GUN && changeWeapon)
 	{
 		// Set the pistol as the primary weapon
-		primaryWeapon = new CShotGun();
-		primaryWeapon->Init();
+		primaryWeapon = cshotgun;
 		changeWeapon = false;
 	}
 	// Update the weapons

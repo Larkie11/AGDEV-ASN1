@@ -4,7 +4,6 @@
 #include "../GroundEntity.h"
 #include "../WeaponInfo/WeaponInfo.h"
 
-
 class CPlayerInfo
 {
 	
@@ -64,6 +63,10 @@ public:
 	void SetJumpSpeed(const double m_dJumpSpeed);
 	// Set m_dJumpAcceleration of the player
 	void SetJumpAcceleration(const double m_dJumpAcceleration);
+
+	int GetMagRound();
+	int GetTotalRound();
+
 	// Set Fall Speed of the player
 	void SetFallSpeed(const double m_dFallSpeed);
 	// Set Fall Acceleration of the player
