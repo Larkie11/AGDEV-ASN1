@@ -1,5 +1,6 @@
-﻿Build started 9/12/2016 10:00:04 PM.
+﻿Build started 10/12/2016 10:46:37 PM.
      1>Project "C:\Users\WM\Documents\AGDEV-ASN1\Common\Common.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\users\wm\documents\agdev-asn1\common\debug\matrixstack.obj' because it is being used by another process.
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\WM\Documents\AGDEV-ASN1\/glew/include" /I"C:\Users\WM\Documents\AGDEV-ASN1\/glfw/include" /ZI /nologo /W3 /WX- /Od /Oy- /D _VARIADIC_MAX=10 /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\CameraBase.cpp Source\Collider\Collider.cpp Source\EntityBase.cpp Source\GraphicsManager.cpp Source\KeyboardController.cpp Source\LightBase.cpp Source\LoadOBJ.cpp Source\LoadTGA.cpp Source\MathUtility.cpp Source\MatrixStack.cpp Source\Mesh.cpp Source\MeshBuilder.cpp Source\MouseController.cpp Source\Mtx44.cpp Source\RenderHelper.cpp Source\SceneManager.cpp Source\ShaderProgram.cpp Source\timer.cpp Source\Utility.cpp Source\Vector2.cpp Source\Vector3.cpp Source\Win32Input.cpp
          Win32Input.cpp
@@ -55,4 +56,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.53
+Time Elapsed 00:00:07.99

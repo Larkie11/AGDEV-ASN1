@@ -145,8 +145,14 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateQuad("GEO_GRASS_LIGHTGREEN", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GetMesh("GEO_GRASS_LIGHTGREEN")->textureID = LoadTGA("Image//grass_lightgreen.tga");
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
-	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//M24R.obj");
-	MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
+	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
+
+	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//Head.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
+
+	//MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("robothead", "Obj//RobotHead.obj");
+
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_FRONT", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_BACK", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_LEFT", Color(1, 1, 1), 1.f);
@@ -201,7 +207,7 @@ void SceneText::Init()
 	bCube->InitLOD("cubeSG", "lightball", "cubeSG");
 	CSceneNode* node = theNode->AddChild(bCube);
 	//
-	/*GenericEntity* baseCube = Create::Asset("cube", Vector3(0.0f, 0.0f, 0.0f));
+	GenericEntity* baseCube = Create::Asset("cube", Vector3(0.0f, 0.0f, 0.0f));
 	CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(baseCube);
 
 	baseCube->InitLOD("cubeSG", "lightball", "lightball");
@@ -223,7 +229,7 @@ void SceneText::Init()
 	aRotateMtx->ApplyUpdate(1.0f, 0.0f, 0.0f, 1.0f);
 	aRotateMtx->SetSteps(-120, 60);
 	grandchildNode->SetUpdateTransformation(aRotateMtx);
-	grandchildCube->InitLOD("cubeSG", "lightball", "cubeSG");*/
+	grandchildCube->InitLOD("cubeSG", "lightball", "cubeSG");
 
 	groundEntity = Create::Ground("GRASS_DARKGREEN", "GEO_GRASS_LIGHTGREEN");
 //	Create::Text3DObject("text", Vector3(0.0f, 0.0f, 0.0f), "DM2210", Vector3(10.0f, 10.0f, 10.0f), Color(0, 1, 1));
@@ -238,11 +244,12 @@ void SceneText::Init()
 	groundEntity->SetScale(Vector3(100.0f, 100.0f, 100.0f));
 	groundEntity->SetGrids(Vector3(10.0f, 1.0f, 10.0f));
 	playerInfo->SetTerrain(groundEntity);
-	for (int i = 0; i < 5;)
+	for (int i = 0; i < 3; i++)
 	{
-		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(0, 100)), Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(-100, 100)), Math::RandFloatMinMax(-5.f,15.f), groundEntity);
-		i++;
-	}/*for (int i = 0; i < 10;)
+		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(0, 100)), Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(-100, 100)), Math::RandFloatMinMax(-5.f,15.f), groundEntity);
+		
+	}
+/*for (int i = 0; i < 10;)
 	{
 		theEnemy = new CEnemy();
 		theEnemy->Init();

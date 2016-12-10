@@ -2,6 +2,9 @@
 
 #include "../GenericEntity.h"
 #include "../GroundEntity.h"
+#include "../SceneGraph/UpdateTransformation.h"
+#include "MatrixStack.h"
+#include "../SceneGraph/SceneGraph.h"
 
 class Mesh;
 
@@ -18,11 +21,19 @@ protected:
 	double m_dAcceleration;
 	Vector3 moveto;
 	bool arrived;
-	float distance;
+	CSceneNode* node;
+	CSceneNode* enemyNode;
+	CUpdateTransformation* aRotateMtx;
 
+	float distance;
+	CEnemy* enemyHand;
+	//CEnemy* result;
 public:
 	CEnemy(void);
 	virtual ~CEnemy();
+	void Init(const Vector3& _position,
+		const Vector3& _target,
+		const float m_fSpeed, GroundEntity* m_pTerrain);
 	void Init(void);
 	void Reset(void);
 
@@ -43,6 +54,7 @@ public:
 	//Get terrain for player info
 	GroundEntity* GetTerrain(void);
 	GenericEntity* bCube;
+	CUpdateTransformation* baseMtx;
 	//Update
 	void Update(double dt = 0.0333f);
 	//Constrain position within borders

@@ -4,8 +4,8 @@
 #include "RenderHelper.h"
 #include "MyMath.h"
 #include "MeshBuilder.h"
-#include "SceneNode.h"
-#include "SceneGraph.h"
+
+
 
 CEnemy::CEnemy() : GenericEntity(NULL)
 , defaultPosition(Vector3(0.0f, 0.0f, 0.0f))
@@ -29,13 +29,27 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	maxBoundary.Set(1, 1, 1);
 	minBoundary.Set(-1, -1, -1);
 	up.Set(0.0f, 1.0f, 0.0f);
-
+	baseMtx= new CUpdateTransformation();
 }
 
 CEnemy::~CEnemy()
 {
 
 }
+void CEnemy::Init(const Vector3& _position,
+	const Vector3& _target,
+	const float m_fSpeed, GroundEntity* m_pTerrain)
+{
+	CEnemy* result = new CEnemy();
+	result->SetPos(_position);
+	result->SetTarget(_target);
+	result->SetCollider(true);
+	result->SetSpeed(m_fSpeed);
+	result->SetTerrain(m_pTerrain);
+	result->Init();
+	EntityManager::GetInstance()->AddEntity(result, true);
+}
+
 void CEnemy::Init(void)
 {
 	//Set current values
@@ -43,14 +57,30 @@ void CEnemy::Init(void)
 	//target.Set(10.0f, 0.0f, 450.f);
 	//moveto.Set(Math::RandIntMinMax(100, 200), 0.0f, Math::RandIntMinMax(100, 200));
 	//Set boundary
-	CSceneNode* enemyNode = CSceneGraph::GetInstance()->AddNode(this);
 
-	bCube = Create::Entity("cube", Vector3(position.x, position.y - 5, position.z));
-	bCube->SetCollider(true);
-	bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	bCube->InitLOD("cubeSG", "lightball", "cubeSG");
-	CSceneNode* node = enemyNode->AddChild(bCube);
+	enemyNode= CSceneGraph::GetInstance()->AddNode(this);
+	enemyHand = new CEnemy();
+	enemyHand->SetPos(position-10);
+	enemyHand->SetTarget(this->target);
+	enemyHand->SetCollider(true);
+	enemyHand->SetAABB(Vector3(2.f, 2.f, 1.f), Vector3(-2.f, -2.f, -2.f));
+	enemyHand->SetSpeed(this->m_dSpeed);
+	enemyHand->SetTerrain(this->m_pTerrain);
+	enemyHand->InitLOD("Hand", "lightball", "cubeSG");
+	CSceneNode* node = enemyNode->AddChild(enemyHand);
+	EntityManager::GetInstance()->AddEntity(enemyHand, true);
+
+	//bCube = Create::Entity("Hand", Vector3(0, 0, position.z));
+	//bCube->SetCollider(true);
+	//bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	//node = enemyNode->AddChild(bCube);
+	//aRotateMtx = new CUpdateTransformation();
+	//aRotateMtx->ApplyUpdate(1.0f, 0.0f, 0.0f, 1.0f);
+	//aRotateMtx->SetSteps(-200, 10);
+	////node->SetUpdateTransformation(aRotateMtx);
+	//bCube->InitLOD("Hand", "lightball", "cubeSG");
 }
+
 
 void CEnemy::Reset(void)
 {
@@ -105,9 +135,14 @@ GroundEntity* CEnemy::GetTerrain(void)
 }
 void CEnemy::Update(double dt)
 {
+	//node->ApplyTranslate(position.x, position.y, position.z);
+	//aRotateMtx->ApplyUpdate(position.x, position.y - 10, position.z);
+	//aRotateMtx->SetSteps(0, 1);
+	//node->SetUpdateTransformation(aRotateMtx);
 	Vector3 viewVector = (target - position).Normalized();
 	position += viewVector * (float)m_dSpeed * (float)dt;
 
+	//enemyHand->SetPos(position - 10);
 	Constrain();
 
 	/*if (position.z > 400.0f)
@@ -117,7 +152,6 @@ void CEnemy::Update(double dt)
 		*/		
 	 distance = (position - target).LengthSquared();
 	 
-	 bCube->SetPosition(Vector3(position.x, position.y - 5, position.z));
 
 	/*if (distance > 100)
 	{
@@ -176,6 +210,7 @@ CEnemy* Create::Enemy(
 	result->SetPos(_position);
 	result->SetTarget(_target);
 	result->SetCollider(true);
+	result->SetAABB(Vector3(2.f, 2.f, 1.f), Vector3(-2.f, -2.f, -2.f));
 	result->SetSpeed(m_fSpeed);
 	result->SetTerrain(m_pTerrain);
 	result->Init();
