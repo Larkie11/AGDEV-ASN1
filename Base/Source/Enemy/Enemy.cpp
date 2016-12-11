@@ -22,7 +22,7 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	defaultTarget.SetZero();
 	defaultUp.Set(0, 1, 0);
 
-	InitLOD("m24r", "sphere", "cube");
+	InitLOD("robot1_high", "robot1_mid", "robot1_low");
 	//Initialise the collider
 	this->SetCollider(true);
 	this->SetAABB(Vector3(1, 1, 1), Vector3(-1, -1, -1));

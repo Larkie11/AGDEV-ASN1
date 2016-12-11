@@ -146,10 +146,40 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("GEO_GRASS_LIGHTGREEN")->textureID = LoadTGA("Image//grass_lightgreen.tga");
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
-
+	////LOD objs for assignment 1
 	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//Head.obj");
 	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
-
+	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
+	MeshBuilder::GetInstance()->GetMesh("robot1_high")->textureID = LoadTGA("Image//ROBOT1_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("robot1_mid", "Obj//robot1_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("robot1_mid")->textureID = LoadTGA("Image//ROBOT1_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("robot1_low", "Obj//robot1_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("robot1_low")->textureID = LoadTGA("Image//ROBOT1_low.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Android_high", "Obj//android_high.obj"); //model 2
+	MeshBuilder::GetInstance()->GetMesh("Android_high")->textureID = LoadTGA("Image//android_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Android_mid", "Obj//android_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Android_low", "Obj//android_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_low.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
+	MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Dog_mid", "Obj//dog_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Dog_mid")->textureID = LoadTGA("Image//dog_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Dog_low", "Obj//dog_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Dog_low")->textureID = LoadTGA("Image//dog_low.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("House_high", "Obj//house_high.obj"); //model 4
+	MeshBuilder::GetInstance()->GetMesh("House_high")->textureID = LoadTGA("Image//house_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("House_mid", "Obj//house_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("House_mid")->textureID = LoadTGA("Image//house_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("House_low", "Obj//house_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("House_low")->textureID = LoadTGA("Image//house_low.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Tree_high", "Obj//tree_high.obj"); //model 5
+	MeshBuilder::GetInstance()->GetMesh("Tree_high")->textureID = LoadTGA("Image//tree_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Tree_mid", "Obj//tree_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Tree_low", "Obj//tree_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Tree_low")->textureID = LoadTGA("Image//tree_low.tga");
+	
 	//MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
 	//MeshBuilder::GetInstance()->GenerateOBJ("robothead", "Obj//RobotHead.obj");
 
@@ -178,6 +208,26 @@ void SceneText::Init()
 	// Create entities into the scene
 	Create::Entity("reference", Vector3(0.0f, 0.0f, 0.0f)); // Reference
 	Create::Entity("lightball", Vector3(lights[0]->position.x, lights[0]->position.y, lights[0]->position.z)); // Lightball
+
+	/*GenericEntity* android = Create::Entity("Android_high", Vector3(100.0f, 0.0f, -100.0f));
+	android->SetCollider(true);
+	android->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	android->InitLOD("Android_high", "Android_mid", "Android_low");
+
+	GenericEntity* rhino = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
+	rhino->SetCollider(true);
+	rhino->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	rhino->InitLOD("Dog_high", "Dog_mid", "Dog_low");
+
+	GenericEntity* house = Create::Entity("House_high", Vector3(-400.0f, -5.0f, 0.0f));
+	house->SetCollider(true);
+	house->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	house->InitLOD("House_high", "House_mid", "House_low");
+
+	GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
+	tree->SetCollider(true);
+	tree->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");*/
 
 	GenericEntity* aCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -20.0f));
 	aCube->SetCollider(true);
@@ -366,7 +416,7 @@ void SceneText::Update(double dt)
 	textObj[2]->SetText(ss1.str());
 
 	ss1.str("");
-	ss1 << playerInfo->GetMagRound();
+	ss1 << "Ammo: " << playerInfo->GetMagRound();
 	textObj[3]->SetText(ss1.str());
 }
 
