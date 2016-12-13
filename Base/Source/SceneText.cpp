@@ -212,19 +212,19 @@ void SceneText::Init()
 	/*GenericEntity* android = Create::Entity("Android_high", Vector3(100.0f, 0.0f, -100.0f));
 	android->SetCollider(true);
 	android->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	android->InitLOD("Android_high", "Android_mid", "Android_low");
+	android->InitLOD("Android_high", "Android_mid", "Android_low");*/
 
-	GenericEntity* rhino = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
-	rhino->SetCollider(true);
-	rhino->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	rhino->InitLOD("Dog_high", "Dog_mid", "Dog_low");
+	/*GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
+	dog->SetCollider(true);
+	dog->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");*/
 
-	GenericEntity* house = Create::Entity("House_high", Vector3(-400.0f, -5.0f, 0.0f));
+	/*GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
 	house->SetCollider(true);
 	house->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	house->InitLOD("House_high", "House_mid", "House_low");
+	house->InitLOD("House_high", "House_mid", "House_low");*/
 
-	GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
+	/*GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
 	tree->SetCollider(true);
 	tree->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
 	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");*/
