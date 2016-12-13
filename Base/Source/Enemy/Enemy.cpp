@@ -30,6 +30,7 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	minBoundary.Set(-1, -1, -1);
 	up.Set(0.0f, 1.0f, 0.0f);
 	baseMtx= new CUpdateTransformation();
+	ef = new EnemyFollower();
 }
 
 CEnemy::~CEnemy()
@@ -57,28 +58,10 @@ void CEnemy::Init(void)
 	//target.Set(10.0f, 0.0f, 450.f);
 	//moveto.Set(Math::RandIntMinMax(100, 200), 0.0f, Math::RandIntMinMax(100, 200));
 	//Set boundary
-
+	//enemyHand = new CEnemy();
 	enemyNode= CSceneGraph::GetInstance()->AddNode(this);
-	enemyHand = new CEnemy();
-	enemyHand->SetPos(position-10);
-	enemyHand->SetTarget(this->target);
-	enemyHand->SetCollider(true);
-	enemyHand->SetAABB(Vector3(2.f, 2.f, 1.f), Vector3(-2.f, -2.f, -2.f));
-	enemyHand->SetSpeed(this->m_dSpeed);
-	enemyHand->SetTerrain(this->m_pTerrain);
-	enemyHand->InitLOD("Hand", "lightball", "cubeSG");
-	CSceneNode* node = enemyNode->AddChild(enemyHand);
-	EntityManager::GetInstance()->AddEntity(enemyHand, true);
-
-	//bCube = Create::Entity("Hand", Vector3(0, 0, position.z));
-	//bCube->SetCollider(true);
-	//bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	//node = enemyNode->AddChild(bCube);
-	//aRotateMtx = new CUpdateTransformation();
-	//aRotateMtx->ApplyUpdate(1.0f, 0.0f, 0.0f, 1.0f);
-	//aRotateMtx->SetSteps(-200, 10);
-	////node->SetUpdateTransformation(aRotateMtx);
-	//bCube->InitLOD("Hand", "lightball", "cubeSG");
+	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain,"Android_high","Android_mid","Android_low");
+	node = enemyNode->AddChild(ef);
 }
 
 
@@ -135,24 +118,13 @@ GroundEntity* CEnemy::GetTerrain(void)
 }
 void CEnemy::Update(double dt)
 {
-	//node->ApplyTranslate(position.x, position.y, position.z);
-	//aRotateMtx->ApplyUpdate(position.x, position.y - 10, position.z);
-	//aRotateMtx->SetSteps(0, 1);
-	//node->SetUpdateTransformation(aRotateMtx);
 	Vector3 viewVector = (target - position).Normalized();
 	position += viewVector * (float)m_dSpeed * (float)dt;
 
 	//enemyHand->SetPos(position - 10);
-	Constrain();
-
-	/*if (position.z > 400.0f)
-		target.z = position.z* -1;
-	else if (position.z < -400.0f)
-		target.z = position.z * -1;
-		*/		
-	 distance = (position - target).LengthSquared();
-	 
-
+	Constrain();	
+	distance = (position - target).LengthSquared();
+	
 	/*if (distance > 100)
 	{
 		Vector3 direction = (moveto - position).Normalize();
@@ -210,9 +182,11 @@ CEnemy* Create::Enemy(
 	result->SetPos(_position);
 	result->SetTarget(_target);
 	result->SetCollider(true);
-	result->SetAABB(Vector3(2.f, 2.f, 1.f), Vector3(-2.f, -2.f, -2.f));
+	result->SetAABB(Vector3(4.f, 2.f, 4.f), Vector3(-4.f, -2.f, -4.f));
 	result->SetSpeed(m_fSpeed);
+	result->IsEnemy(true);
 	result->SetTerrain(m_pTerrain);
+	result->SetScale(Vector3(2, 2, 2));
 	result->Init();
 	EntityManager::GetInstance()->AddEntity(result, true);
 	return result;

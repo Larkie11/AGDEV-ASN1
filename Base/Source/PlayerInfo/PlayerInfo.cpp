@@ -275,6 +275,17 @@ void CPlayerInfo::UpdateFreeFall(double dt)
 		m_bFallDownwards = false;
 	}
 }
+string CPlayerInfo::GetWeaponName()
+{
+	if (wt == WT_GUN)
+	{
+		return "Shotgun";
+	}
+	if (wt == WT_PISTOL)
+	{
+		return "Pistol";
+	}
+}
 CPlayerInfo::WeaponType CPlayerInfo::GetWeaponType()
 {
 	return wt;
@@ -427,12 +438,12 @@ void CPlayerInfo::Update(double dt)
 	{
 		SetToJumpUpwards(true);
 	}
-	if (KeyboardController::GetInstance()->IsKeyPressed('1'))
+	if (KeyboardController::GetInstance()->IsKeyPressed('1') || MouseController::GetInstance()->GetMouseScrollStatus(MouseController::SCROLL_TYPE_YOFFSET) == 1)
 	{
 		changeWeapon = true;
 		wt = WT_GUN;
 	}
-	if (KeyboardController::GetInstance()->IsKeyPressed('2'))
+	if (KeyboardController::GetInstance()->IsKeyPressed('2') || MouseController::GetInstance()->GetMouseScrollStatus(MouseController::SCROLL_TYPE_YOFFSET) == 0)
 	{
 		changeWeapon = true;
 		wt = WT_PISTOL;

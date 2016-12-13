@@ -129,6 +129,9 @@
     <ClCompile Include="Source\WeaponInfo\Shotgun.cpp">
       <Filter>WeaponInfo</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\EnemyFollower.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -217,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="Source\WeaponInfo\Shotgun.h">
       <Filter>WeaponInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Enemy\EnemyFollower.h">
+      <Filter>Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

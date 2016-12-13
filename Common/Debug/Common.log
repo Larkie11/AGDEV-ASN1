@@ -1,0 +1,34 @@
+﻿Build started 13/12/2016 7:38:47 PM.
+     1>Project "C:\Users\WM\Documents\AGDEV-ASN1\Common\Common.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\WM\Documents\AGDEV-ASN1\/glew/include" /I"C:\Users\WM\Documents\AGDEV-ASN1\/glfw/include" /ZI /nologo /W3 /WX- /Od /Oy- /D _VARIADIC_MAX=10 /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\EntityBase.cpp
+         EntityBase.cpp
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\WM\Documents\AGDEV-ASN1\Debug\Common.lib" /NOLOGO Debug\CameraBase.obj
+         Debug\Collider.obj
+         Debug\EntityBase.obj
+         Debug\GraphicsManager.obj
+         Debug\KeyboardController.obj
+         Debug\LightBase.obj
+         Debug\LoadOBJ.obj
+         Debug\LoadTGA.obj
+         Debug\MathUtility.obj
+         Debug\MatrixStack.obj
+         Debug\Mesh.obj
+         Debug\MeshBuilder.obj
+         Debug\MouseController.obj
+         Debug\Mtx44.obj
+         Debug\RenderHelper.obj
+         Debug\SceneManager.obj
+         Debug\ShaderProgram.obj
+         Debug\timer.obj
+         Debug\Utility.obj
+         Debug\Vector2.obj
+         Debug\Vector3.obj
+         Debug\Win32Input.obj
+         Common.vcxproj -> C:\Users\WM\Documents\AGDEV-ASN1\Debug\Common.lib
+     1>Done Building Project "C:\Users\WM\Documents\AGDEV-ASN1\Common\Common.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.58

@@ -19,6 +19,8 @@ public:
 	inline void SetScale(const Vector3& _value){ scale = _value; };
 	inline Vector3 GetScale(){ return scale; };
 
+	void IsEnemy(bool value = false);
+	virtual bool GetIsEnemy();
 	bool IsDone();
 	void SetIsDone(const bool _value);
 
@@ -35,6 +37,7 @@ protected:
 	Vector3 position;
 	Vector3 scale;
 
+	bool isEnemy;
 	bool isDone;
 	bool m_bCollider;
 	bool bLaser;

@@ -3,6 +3,8 @@
 #include "../FPSCamera.h"
 #include "../GroundEntity.h"
 #include "../WeaponInfo/WeaponInfo.h"
+#include <string>
+using std::string;
 
 class CPlayerInfo
 {
@@ -76,6 +78,7 @@ public:
 	// Set the terrain for the player info
 	void SetTerrain(GroundEntity* m_pTerrain);
 	WeaponType GetWeaponType();
+	string GetWeaponName();
 	// Get position
 	Vector3 GetPos(void) const;
 	// Get target

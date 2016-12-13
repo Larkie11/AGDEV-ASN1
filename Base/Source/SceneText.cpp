@@ -135,6 +135,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("Chair")->textureID = LoadTGA("Image//chair.tga");
 	MeshBuilder::GetInstance()->GenerateRing("ring", Color(1, 0, 1), 36, 1, 0.5f);
 	MeshBuilder::GetInstance()->GenerateSphere("lightball", Color(1, 1, 1), 18, 36, 1.f);
+	MeshBuilder::GetInstance()->GenerateSphere("sgbullet", Color(1, 0, 0), 18, 36, 0.2f);
 	MeshBuilder::GetInstance()->GenerateSphere("sphere", Color(1, 0, 0), 18, 36, 0.5f);
 	MeshBuilder::GetInstance()->GenerateCone("cone", Color(0.5f, 1, 0.3f), 36, 10.f, 10.f);
 	MeshBuilder::GetInstance()->GenerateCube("cube", Color(1.0f, 1.0f, 0.0f), 1.0f);
@@ -294,10 +295,9 @@ void SceneText::Init()
 	groundEntity->SetScale(Vector3(100.0f, 100.0f, 100.0f));
 	groundEntity->SetGrids(Vector3(10.0f, 1.0f, 10.0f));
 	playerInfo->SetTerrain(groundEntity);
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 10; i++)
 	{
-		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(0, 100)), Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(-100, 100)), Math::RandFloatMinMax(-5.f,15.f), groundEntity);
-		
+		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-300, 300), 0.0f, Math::RandIntMinMax(-300, 300)), Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(-100, 100)), Math::RandFloatMinMax(-5.f,15.f), groundEntity);
 	}
 /*for (int i = 0; i < 10;)
 	{
@@ -418,6 +418,10 @@ void SceneText::Update(double dt)
 	ss1.str("");
 	ss1 << "Ammo: " << playerInfo->GetMagRound();
 	textObj[3]->SetText(ss1.str());
+
+	ss1.str("");
+	ss1 << "Weapon: " << playerInfo->GetWeaponName();
+	textObj[4]->SetText(ss1.str());
 }
 
 void SceneText::Render()
