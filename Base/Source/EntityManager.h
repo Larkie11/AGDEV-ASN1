@@ -22,9 +22,13 @@ public:
 
 	void SetSpatialPartition(CSpatialPartition* theSpatialPartition);
 
+	int GetScore();
+
 private:
 	EntityManager();
 	virtual ~EntityManager();
+
+	int score;
 
 	// Check for overlap
 	bool CheckOverlap(Vector3 thisMinAABB, Vector3 thisMaxAABB, Vector3 thatMinAABB, Vector3 thatMaxAABB);
