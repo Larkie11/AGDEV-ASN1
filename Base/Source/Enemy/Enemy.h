@@ -5,8 +5,10 @@
 #include "../SceneGraph/UpdateTransformation.h"
 #include "MatrixStack.h"
 #include "../SceneGraph/SceneGraph.h"
+#include "EnemyFollower.h"
 
 class Mesh;
+class EnemyFollower;
 
 class CEnemy :
 	public GenericEntity
@@ -28,6 +30,7 @@ protected:
 	float distance;
 	CEnemy* enemyHand;
 	//CEnemy* result;
+	EnemyFollower* ef;
 public:
 	CEnemy(void);
 	virtual ~CEnemy();

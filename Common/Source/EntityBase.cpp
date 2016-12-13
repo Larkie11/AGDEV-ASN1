@@ -12,7 +12,14 @@ EntityBase::EntityBase()
 EntityBase::~EntityBase()
 {
 }
-
+bool EntityBase::GetIsEnemy()
+{
+	return isEnemy;
+}
+void EntityBase::IsEnemy(bool enemy)
+{
+	isEnemy = enemy;
+}
 void EntityBase::Update(double _dt)
 {
 }

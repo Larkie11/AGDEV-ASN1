@@ -354,7 +354,7 @@ bool EntityManager::CheckForCollision(void)
 			{
 				if (colliderThat == colliderThis)
 					continue;
-
+				
 				if ((*colliderThat)->HasCollider())
 				{
 					Vector3 hitPosition = Vector3(0, 0, 0);
@@ -399,7 +399,7 @@ bool EntityManager::CheckForCollision(void)
 			{
 				if (colliderThat == colliderThis)
 					continue;
-
+				
 				if ((*colliderThat)->HasCollider())
 				{
 					EntityBase *thatEntity = dynamic_cast<EntityBase*>(*colliderThat);
@@ -407,19 +407,30 @@ bool EntityManager::CheckForCollision(void)
 					{
 						if (CheckAABBCollision(thisEntity, thatEntity))
 						{
-							score += 1;
 							thisEntity->SetIsDone(true);
 							thatEntity->SetIsDone(true);
 							// Remove from Scene Graph
 							if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
+							if (thisEntity->GetIsEnemy() && thatEntity->GetIsEnemy())
 							{
-								cout << "*** This Entity removed ***" << endl;
+								cout << "Both enemy";
 							}
-							// Remove from Scene Graph
-							if (CSceneGraph::GetInstance()->DeleteNode((*colliderThat)) == true)
+							else
 							{
-								cout << "*** That Entity removed ***" << endl;
+								thisEntity->SetIsDone(true);
+								thatEntity->SetIsDone(true);
+								// Remove from Scene Graph
+								if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
+								{
+									cout << "*** This Entity removed ***" << endl;
+								}
+								// Remove from Scene Graph
+								if (CSceneGraph::GetInstance()->DeleteNode((*colliderThat)) == true)
+								{
+									cout << "*** That Entity removed ***" << endl;
+								}
 							}
+							
 						}
 					}
 				}
