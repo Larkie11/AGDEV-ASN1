@@ -103,8 +103,6 @@ public:
 	// Update
 	void Update(double dt = 0.0333f);
 
-	void RenderWeaponInFPS(float size = 1, float x = 0, float y = 0);
-
 	// Constrain the position within the borders
 	void Constrain(void);
 
@@ -135,7 +133,4 @@ private:
 
 	CWeaponInfo* primaryWeapon;
 	CWeaponInfo* secondaryWeapon;
-
-	/*MS viewStack;
-	MS projectionStack;*/
 };

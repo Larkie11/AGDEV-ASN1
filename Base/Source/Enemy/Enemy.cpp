@@ -61,6 +61,7 @@ void CEnemy::Init(void)
 	//enemyHand = new CEnemy();
 	enemyNode= CSceneGraph::GetInstance()->AddNode(this);
 	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain,"Android_high","Android_mid","Android_low");
+
 	node = enemyNode->AddChild(ef);
 }
 
@@ -124,7 +125,7 @@ void CEnemy::Update(double dt)
 	//enemyHand->SetPos(position - 10);
 	Constrain();	
 	distance = (position - target).LengthSquared();
-	
+	ef->SetPos(position-10);
 	/*if (distance > 100)
 	{
 		Vector3 direction = (moveto - position).Normalize();

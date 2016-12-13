@@ -27,6 +27,7 @@ EnemyFollower::EnemyFollower() : GenericEntity(NULL)
 	this->SetCollider(true);
 	this->SetAABB(Vector3(1, 1, 1), Vector3(-1, -1, -1));
 	this->IsEnemy(true);
+	position.SetZero();
 	maxBoundary.Set(1, 1, 1);
 	minBoundary.Set(-1, -1, -1);
 	up.Set(0.0f, 1.0f, 0.0f);
@@ -135,12 +136,12 @@ GroundEntity* EnemyFollower::GetTerrain(void)
 }
 void EnemyFollower::Update(double dt)
 {
-	Vector3 viewVector = (target - position).Normalized();
-	position += viewVector * (float)m_dSpeed * (float)dt;
+	//Vector3 viewVector = (target - position).Normalized();
+	//position += viewVector * (float)m_dSpeed * (float)dt;
 
 	//enemyHand->SetPos(position - 10);
-	Constrain();	
-	distance = (position - target).LengthSquared();
+	//Constrain();	
+	//distance = (position - target).LengthSquared();
 	
 	/*if (distance > 100)
 	{

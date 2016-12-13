@@ -9,7 +9,6 @@
 #include "../WeaponInfo/LaserBlaster.h"
 #include "../WeaponInfo/GrenadeThrow.h"
 #include "../WeaponInfo/Shotgun.h"
-#include "GraphicsManager.h"
 
 // Allocating and initializing CPlayerInfo's static data member.  
 // The pointer is allocated but not the object's constructor.
@@ -126,7 +125,7 @@ void CPlayerInfo::SetToJumpUpwards(bool isOnJumpUpwards)
 	{
 		m_bJumpUpwards = true;
 		m_bFallDownwards = false;
-		m_dJumpSpeed = 6.0;
+		m_dJumpSpeed = 4.0;
 	}
 }
 
@@ -538,34 +537,6 @@ void CPlayerInfo::Constrain(void)
 			position.y = m_pTerrain->GetTerrainHeight(position);
 	}
 }
-
-//void CPlayerInfo::RenderWeaponInFPS(float size, float x, float y)
-//{
-//	MS& modelStack = GraphicsManager::GetInstance()->GetModelStack();
-//	Mtx44 ortho;
-//	ortho.SetToOrtho(0, 180, 0, 100, -50, 100); //size of screen UI
-//	projectionStack.LoadMatrix(ortho);
-//	viewStack.LoadIdentity();
-//	if (GetWeaponType() == WT_PISTOL)
-//	{
-//		modelStack.PushMatrix();
-//		modelStack.Translate(140, 4, 0);
-//		modelStack.Rotate(200, 0, 1, 0);
-//		modelStack.Rotate(10, -1, 0, 0);
-//		modelStack.Scale(20, 20, 20);
-//		RenderMesh(meshList[GEO_GUN1], false);
-//	}
-//	else if (GetWeaponType() == WT_GUN)
-//	{
-//		modelStack.PushMatrix();
-//		modelStack.Translate(140, 4, 0);
-//		modelStack.Rotate(200, 0, 1, 0);
-//		modelStack.Rotate(10, -1, 0, 0);
-//		modelStack.Scale(20, 20, 20);
-//		RenderMesh(meshList[GEO_GUN2], false);
-//	}
-//	modelStack.PopMatrix();
-//}
 
 void CPlayerInfo::AttachCamera(FPSCamera* _cameraPtr)
 {

@@ -30,12 +30,12 @@ void EntityManager::Update(double _dt)
 
 	// Clean up entities that are done
 	it = entityList.begin();
-	while (it != end)
+	while (it != end && *it != NULL)
 	{
 		if ((*it)->IsDone())
 		{
 			// Delete if done
-			delete *it;
+			//delete *it;
 			it = entityList.erase(it);
 		}
 		else
@@ -142,7 +142,6 @@ void EntityManager::SetSpatialPartition(CSpatialPartition* theSpatialPartition)
 // Constructor
 EntityManager::EntityManager()
 	: theSpatialPartition(NULL)
-	, score(0)
 {
 }
 
@@ -154,11 +153,6 @@ EntityManager::~EntityManager()
 
 	// Clear out the Scene Graph
 	CSceneGraph::GetInstance()->Destroy();
-}
-
-int EntityManager::GetScore()
-{
-	return score;
 }
 
 // Check for overlap
@@ -211,9 +205,8 @@ bool EntityManager::CheckOverlap(Vector3 thisMinAABB, Vector3 thisMaxAABB, Vecto
 	if (((thisMinAABB >= thatMinAABB) && (thisMaxAABB <= thatMaxAABB))
 		&&
 		((thisMaxAABB >= thatMinAABB) && (thisMaxAABB <= thatMaxAABB)))
-	{
 		return true;
-	}
+
 	// Check if that object is within this object
 	/*
 	if (((thatMinAABB.x >= thisMinAABB.x) && (thatMinAABB.x <= thisMaxAABB.x) &&
@@ -227,9 +220,8 @@ bool EntityManager::CheckOverlap(Vector3 thisMinAABB, Vector3 thisMaxAABB, Vecto
 	if (((thatMinAABB >= thisMinAABB) && (thatMinAABB <= thisMaxAABB))
 		&&
 		((thatMaxAABB >= thisMinAABB) && (thatMaxAABB <= thisMaxAABB)))
-	{
 		return true;
-	}
+
 	return false;
 }
 
@@ -371,6 +363,7 @@ bool EntityManager::CheckForCollision(void)
 					{
 						(*colliderThis)->SetIsDone(true);
 						(*colliderThat)->SetIsDone(true);
+
 						// Remove from Scene Graph
 						if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
 						{
@@ -407,27 +400,26 @@ bool EntityManager::CheckForCollision(void)
 					{
 						if (CheckAABBCollision(thisEntity, thatEntity))
 						{
-							thisEntity->SetIsDone(true);
-							thatEntity->SetIsDone(true);
-							// Remove from Scene Graph
-							if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
 							if (thisEntity->GetIsEnemy() && thatEntity->GetIsEnemy())
 							{
-								cout << "Both enemy";
 							}
 							else
 							{
-								thisEntity->SetIsDone(true);
-								thatEntity->SetIsDone(true);
-								// Remove from Scene Graph
-								if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
+								if (thisEntity != NULL && thatEntity != NULL)
 								{
-									cout << "*** This Entity removed ***" << endl;
-								}
-								// Remove from Scene Graph
-								if (CSceneGraph::GetInstance()->DeleteNode((*colliderThat)) == true)
-								{
-									cout << "*** That Entity removed ***" << endl;
+
+									thisEntity->SetIsDone(true);
+									thatEntity->SetIsDone(true);
+									// Remove from Scene Graph
+									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
+									{
+										cout << "*** This Entity removed ***" << endl;
+									}
+									// Remove from Scene Graph
+									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThat)) == true)
+									{
+										cout << "*** That Entity removed ***" << endl;
+									}
 								}
 							}
 							
