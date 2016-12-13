@@ -22,7 +22,7 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	defaultTarget.SetZero();
 	defaultUp.Set(0, 1, 0);
 
-	InitLOD("robot1_high", "robot1_mid", "robot1_low");
+	InitLOD("Head", "Head", "Head");
 	//Initialise the collider
 	this->SetCollider(true);
 	this->SetAABB(Vector3(1, 1, 1), Vector3(-1, -1, -1));
@@ -31,6 +31,7 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	up.Set(0.0f, 1.0f, 0.0f);
 	baseMtx= new CUpdateTransformation();
 	ef = new EnemyFollower();
+	ez = new EnemyFollower();
 }
 
 CEnemy::~CEnemy()
@@ -61,8 +62,10 @@ void CEnemy::Init(void)
 	//enemyHand = new CEnemy();
 	enemyNode= CSceneGraph::GetInstance()->AddNode(this);
 	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain,"Android_high","Android_mid","Android_low");
-
+	ez->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Body", "Body", "Body");
+	ez->SetAABB(Vector3(5, 5, 5), Vector3(-5, -5, -5));
 	node = enemyNode->AddChild(ef);
+	CSceneNode* newNode = node->AddChild(ez);
 }
 
 
@@ -125,6 +128,7 @@ void CEnemy::Update(double dt)
 	//enemyHand->SetPos(position - 10);
 	Constrain();	
 	distance = (position - target).LengthSquared();
+	ez->SetPos(Vector3(position.x, position.y - 7, position.z));
 	ef->SetPos(position-10);
 	/*if (distance > 100)
 	{
@@ -183,11 +187,10 @@ CEnemy* Create::Enemy(
 	result->SetPos(_position);
 	result->SetTarget(_target);
 	result->SetCollider(true);
-	result->SetAABB(Vector3(4.f, 2.f, 4.f), Vector3(-4.f, -2.f, -4.f));
+	result->SetAABB(Vector3(2.5f, 1.5f, 2.5f), Vector3(-2.5f, -1.5f, -2.5f));
 	result->SetSpeed(m_fSpeed);
 	result->IsEnemy(true);
 	result->SetTerrain(m_pTerrain);
-	result->SetScale(Vector3(2, 2, 2));
 	result->Init();
 	EntityManager::GetInstance()->AddEntity(result, true);
 	return result;

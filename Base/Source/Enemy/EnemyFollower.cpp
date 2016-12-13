@@ -25,7 +25,7 @@ EnemyFollower::EnemyFollower() : GenericEntity(NULL)
 	InitLOD("Android_high", "Android_mid", "Android_mid");
 	//Initialise the collider
 	this->SetCollider(true);
-	this->SetAABB(Vector3(1, 1, 1), Vector3(-1, -1, -1));
+	this->SetAABB(Vector3(2, 2, 2), Vector3(-2, -2, -2));
 	this->IsEnemy(true);
 	position.SetZero();
 	maxBoundary.Set(1, 1, 1);
@@ -47,6 +47,7 @@ void EnemyFollower::Init(const Vector3& _position,
 	SetCollider(true);
 	SetSpeed(m_fSpeed);
 	SetTerrain(m_pTerrain);
+	IsEnemy(true);
 	InitLOD(High, mid, low);
 	EntityManager::GetInstance()->AddEntity(this, true);
 }
@@ -164,8 +165,8 @@ void EnemyFollower::Constrain(void)
 	if (position.z < minBoundary.z + 1.0f)
 		position.z = minBoundary.z + 1.0f;
 
-	if (position.y != m_pTerrain->GetTerrainHeight(position))
-		position.y = m_pTerrain->GetTerrainHeight(position);
+	//if (position.y != m_pTerrain->GetTerrainHeight(position))
+		//position.y = m_pTerrain->GetTerrainHeight(position);
 
 	if (distance < 100)
 	{

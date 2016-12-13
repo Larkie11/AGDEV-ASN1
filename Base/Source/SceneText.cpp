@@ -148,7 +148,9 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
 	////LOD objs for assignment 1
-	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//Head.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Head", "Obj//Head.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
+
 	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
 	MeshBuilder::GetInstance()->GetMesh("robot1_high")->textureID = LoadTGA("Image//ROBOT1_high.tga");

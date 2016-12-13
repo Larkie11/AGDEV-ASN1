@@ -31,6 +31,7 @@ protected:
 	CEnemy* enemyHand;
 	//CEnemy* result;
 	EnemyFollower* ef;
+	EnemyFollower* ez;
 public:
 	CEnemy(void);
 	virtual ~CEnemy();
