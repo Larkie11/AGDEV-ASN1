@@ -132,6 +132,9 @@
     <ClCompile Include="Source\Enemy\EnemyFollower.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h">
@@ -223,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="Source\Enemy\EnemyFollower.h">
       <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sound.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
