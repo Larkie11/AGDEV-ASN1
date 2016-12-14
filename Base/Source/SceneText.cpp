@@ -151,11 +151,25 @@ void SceneText::Init()
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
 	////LOD objs for assignment 1
 	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//M24R.obj");
-	MeshBuilder::GetInstance()->GenerateOBJ("Camp", "Obj//Camp.obj");
-	MeshBuilder::GetInstance()->GetMesh("Camp")->textureID = LoadTGA("Image//wood.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Camp_high", "Obj//Camp_high.obj");
+	MeshBuilder::GetInstance()->GetMesh("Camp_high")->textureID = LoadTGA("Image//wood_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Camp_mid", "Obj//Camp_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Camp_mid")->textureID = LoadTGA("Image//wood_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Camp_low", "Obj//Camp_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Camp_low")->textureID = LoadTGA("Image//wood_low.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("Head", "Obj//Head.obj");
-	MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Head_high", "Obj//Head_high.obj");
+	MeshBuilder::GetInstance()->GetMesh("Head_high")->textureID = LoadTGA("Image//head_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Head_mid", "Obj//Head_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Head_mid")->textureID = LoadTGA("Image//head_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Head_low", "Obj//Head_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Head_low")->textureID = LoadTGA("Image//head_low.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Body_high", "Obj//body_high.obj");
+	MeshBuilder::GetInstance()->GetMesh("Body_high")->textureID = LoadTGA("Image//body_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Body_mid", "Obj//body_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Body_mid")->textureID = LoadTGA("Image//body_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Body_low", "Obj//body_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Body_low")->textureID = LoadTGA("Image//body_low.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
@@ -265,12 +279,12 @@ void SceneText::Init()
 	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
 	//}
 
-	GenericEntity* anotherCube = Create::Entity("Camp", Vector3(0.0f, -5.f, 0.0f));
+	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
 	anotherCube->SetAABB(Vector3(10.f, 10.f, 10.f), Vector3(-10.f, -10.f, -10.f));
-	anotherCube->InitLOD("Camp", "lightball", "lightball");
+	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
-	anotherCube->IsCamp("Camp");
+	anotherCube->IsCamp("Camp_high");
 
 	//GenericEntity* bCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -10.0f));
 	//bCube->SetCollider(true);

@@ -22,7 +22,7 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	defaultTarget.SetZero();
 	defaultUp.Set(0, 1, 0);
 
-	InitLOD("Head", "Head", "Head");
+	InitLOD("Head_high", "Head_mid", "Head_low");
 	//Initialise the collider
 	this->SetCollider(true);
 	this->SetAABB(Vector3(1, 1, 1), Vector3(-1, -1, -1));
@@ -62,7 +62,7 @@ void CEnemy::Init(void)
 	//enemyHand = new CEnemy();
 	enemyNode= CSceneGraph::GetInstance()->AddNode(this);
 	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain,"Android_high","Android_mid","Android_low");
-	ez->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Body", "Body", "Body");
+	ez->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Body_high", "Body_mid", "Body_low");
 	ez->SetAABB(Vector3(5, 5, 5), Vector3(-5, -5, -5));
 	node = enemyNode->AddChild(ef);
 	CSceneNode* newNode = node->AddChild(ez);
