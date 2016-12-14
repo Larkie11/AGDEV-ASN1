@@ -34,7 +34,7 @@ void SkyBoxEntity::Render()
 		// Back
 		modelStack.PushMatrix();
 		modelStack.Rotate(180, 0, 1, 0);
-		modelStack.Translate(0, 0, -size.z / 2);
+		modelStack.Translate(0, 0, -size.z / 2 + 5);
 		modelStack.Scale(size.x, size.y, size.z);
 			RenderHelper::RenderMesh(modelMesh[BACK]);
 		modelStack.PopMatrix();
@@ -50,7 +50,7 @@ void SkyBoxEntity::Render()
 		// Right
 		modelStack.PushMatrix();
 		modelStack.Rotate(90, 0, 1, 0);
-		modelStack.Translate(0, 0, -size.z / 2);
+		modelStack.Translate(0, 0, -size.z / 2 + 2);
 		modelStack.Scale(size.x, size.y, size.z);
 			RenderHelper::RenderMesh(modelMesh[RIGHT]);
 		modelStack.PopMatrix();
@@ -58,8 +58,8 @@ void SkyBoxEntity::Render()
 		// Top
 		modelStack.PushMatrix();
 		modelStack.Rotate(90, 1, 0, 0);
-		modelStack.Translate(0, 0, -size.z / 2);
-		modelStack.Rotate(-90, 0, 0, 1);
+		modelStack.Translate(0, 0, -size.z / 2 + 5);
+		//modelStack.Rotate(-90, 0, 0, 1);
 		modelStack.Scale(size.x, size.y, size.z);
 			RenderHelper::RenderMesh(modelMesh[TOP]);
 		modelStack.PopMatrix();
