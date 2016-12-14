@@ -47,7 +47,7 @@ void SceneText::Init()
 {
 	currProg = GraphicsManager::GetInstance()->LoadShader("default", "Shader//Texture.vertexshader", "Shader//Texture.fragmentshader");
 	// Tell the shader program to store these uniform locations
-	Start = GetTickCount();
+	t0 = clock();
 	currProg->AddUniform("MVP");
 	currProg->AddUniform("MV");
 	currProg->AddUniform("MV_inverse_transpose");
@@ -345,7 +345,7 @@ void SceneText::Update(double dt)
 {
 	// Update our entities
 	EntityManager::GetInstance()->Update(dt);
-	elasped = ((GetTickCount() - Start)/1000)%60;
+	elasped = (clock() - t0) /CLOCKS_PER_SEC;
 	// THIS WHOLE CHUNK TILL <THERE> CAN REMOVE INTO ENTITIES LOGIC! Or maybe into a scene function to keep the update clean
 	if(KeyboardController::GetInstance()->IsKeyDown('1'))
 		glEnable(GL_CULL_FACE);
@@ -368,20 +368,34 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
-	if (elasped == 50 && !wave2)
+	if (elasped == 50 && waveNo == "1")
 	{
-		wave2 = true;
+		waveNo = "2";
 	}
-
-	if (wave2)
+	if (elasped == 100 && waveNo == "2.1")
+	{
+		waveNo = "3";
+		currWaveEnemy = 0;
+	}
+	if (waveNo == "2")
 	{
 		for (currWaveEnemy; currWaveEnemy < 3;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, -200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
 			currWaveEnemy++;
 		}
 		if (currWaveEnemy > 1)
-			wave2 = false;
+			waveNo = "2.1";
+	}
+	if (waveNo == "3")
+	{
+		for (currWaveEnemy; currWaveEnemy < 3;)
+		{
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			currWaveEnemy++;
+		}
+		if (currWaveEnemy > 1)
+			waveNo = "3.1";
 	}
 	if(KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
@@ -448,7 +462,7 @@ void SceneText::Update(double dt)
 
 
 	std::ostringstream ss1;
-	ss1.precision(4);
+	ss1.precision(10);
 	//ss1 << "Player:" << playerInfo->GetPos();
 	//textObj[2]->SetText(ss1.str());
 	ss1.str("");
