@@ -22,7 +22,7 @@ EnemyFollower::EnemyFollower() : GenericEntity(NULL)
 	defaultTarget.SetZero();
 	defaultUp.Set(0, 1, 0);
 
-	InitLOD("Android_high", "Android_mid", "Android_mid");
+	this->InitLOD("Android_high", "Android_mid", "Android_mid");
 	//Initialise the collider
 	this->SetCollider(true);
 	this->SetAABB(Vector3(2, 2, 2), Vector3(-2, -2, -2));

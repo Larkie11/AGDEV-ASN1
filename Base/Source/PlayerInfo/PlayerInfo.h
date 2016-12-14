@@ -111,6 +111,7 @@ public:
 	void AttachCamera(FPSCamera* _cameraPtr);
 	void DetachCamera(void);
 	int playerHealth = 100;
+	int playerScore = 0;
 
 private:
 	Vector3 defaultPosition, defaultTarget, defaultUp;

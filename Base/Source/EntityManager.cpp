@@ -415,12 +415,12 @@ bool EntityManager::CheckForCollision(void)
 							{
 								if (thisEntity != NULL && thatEntity != NULL)
 								{
-									if (thisEntity->GetIsCamp() == "Camp_high" || thisEntity->GetIsCamp() == "Camp_mid" || thisEntity->GetIsCamp() == "Camp_low")
+									if (thisEntity->GetIsCamp() == "Camp")
 									{
 										thatEntity->SetIsDone(true);
 										CPlayerInfo::GetInstance()->playerHealth -= 2;
 									}
-									else if (thatEntity->GetIsCamp() == "Camp_high" || thatEntity->GetIsCamp() == "Camp_mid" || thatEntity->GetIsCamp() == "Camp_low")
+									else if (thatEntity->GetIsCamp() == "Camp")
 									{
 										thisEntity->SetIsDone(true);
 										CPlayerInfo::GetInstance()->playerHealth -= 2;
@@ -429,6 +429,7 @@ bool EntityManager::CheckForCollision(void)
 									{
 										thatEntity->SetIsDone(true);
 										thisEntity->SetIsDone(true);
+										CPlayerInfo::GetInstance()->playerScore++;
 									}
 									
 									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)

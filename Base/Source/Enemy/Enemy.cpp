@@ -60,12 +60,13 @@ void CEnemy::Init(void)
 	//moveto.Set(Math::RandIntMinMax(100, 200), 0.0f, Math::RandIntMinMax(100, 200));
 	//Set boundary
 	//enemyHand = new CEnemy();
-	enemyNode= CSceneGraph::GetInstance()->AddNode(this);
-	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain,"Android_high","Android_mid","Android_low");
+	CSceneNode* newNode = CSceneGraph::GetInstance()->AddNode(ez);
+
+	enemyNode = newNode->AddChild(this);
+	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Android_high", "Android_mid", "Android_low");
 	ez->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Body_high", "Body_mid", "Body_low");
 	ez->SetAABB(Vector3(5, 5, 5), Vector3(-5, -5, -5));
 	node = enemyNode->AddChild(ef);
-	CSceneNode* newNode = node->AddChild(ez);
 }
 
 
@@ -132,19 +133,24 @@ void CEnemy::Update(double dt)
 	Constrain();	
 	distance = (position - target).LengthSquared();
 	ez->SetPos(Vector3(position.x, position.y - 7, position.z));
-	ef->SetPos(position-10);
 
-	/*if (distance > 100)
+	if (follow >= 1)
 	{
-		Vector3 direction = (moveto - position).Normalize();
-		position = position + direction* (float)m_dSpeed * (float)dt;
+		ef->SetScale(Vector3(1, 1, 1));
+		ef->SetCollider(true);
 	}
 	else
 	{
-		arrived = true;
-	}*/
-}
+		ef->SetScale(Vector3(0, 0, 0));
+		ef->SetCollider(false);
 
+	}
+	ef->SetPos(position+10);
+}
+void CEnemy::SetNumOfFollowers(int followers)
+{
+	follow = followers;
+}
 void CEnemy::Constrain(void)
 {
 	if (position.x > maxBoundary.x - 1.0f)

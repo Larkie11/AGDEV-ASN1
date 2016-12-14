@@ -157,7 +157,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("Camp_mid")->textureID = LoadTGA("Image//wood_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_low", "Obj//Camp_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Camp_low")->textureID = LoadTGA("Image//wood_low.tga");
-
+	
 	MeshBuilder::GetInstance()->GenerateOBJ("Head_high", "Obj//Head_high.obj");
 	MeshBuilder::GetInstance()->GetMesh("Head_high")->textureID = LoadTGA("Image//head_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Head_mid", "Obj//Head_mid.obj");
@@ -170,6 +170,9 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("Body_mid")->textureID = LoadTGA("Image//body_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Body_low", "Obj//body_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Body_low")->textureID = LoadTGA("Image//body_low.tga");
+
+	//MeshBuilder::GetInstance()->GenerateOBJ("Head", "Obj//Head.obj");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
@@ -279,12 +282,12 @@ void SceneText::Init()
 	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
 	//}
 
-	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
+	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f)); 
 	anotherCube->SetCollider(true);
 	anotherCube->SetAABB(Vector3(10.f, 10.f, 10.f), Vector3(-10.f, -10.f, -10.f));
 	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
-	anotherCube->IsCamp("Camp_high");
+	anotherCube->IsCamp("Camp");
 
 	//GenericEntity* bCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -10.0f));
 	//bCube->SetCollider(true);
@@ -331,7 +334,8 @@ void SceneText::Init()
 	playerInfo->SetTerrain(groundEntity);
 	for (int i = 0; i < 3; i++)
 	{
-		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-250, -200), 0.0f, Math::RandIntMinMax(-200, -200)),Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f,15.f), groundEntity);
+		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-300, -300), 0.0f, Math::RandIntMinMax(-300, -300)),Vector3(Math::RandIntMinMax(-30, 30), 0.0f, Math::RandIntMinMax(-30, 30)), Math::RandFloatMinMax(5.f,7.f), groundEntity);
+		theEnemy->SetNumOfFollowers(0);
 	}
 /*for (int i = 0; i < 10;)
 	{
@@ -396,6 +400,7 @@ void SceneText::Update(double dt)
 		for (currWaveEnemy; currWaveEnemy < 3;)
 		{
 			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
 		if (currWaveEnemy > 1)
@@ -403,7 +408,7 @@ void SceneText::Update(double dt)
 	}
 	if (waveNo == "3")
 	{
-		for (currWaveEnemy; currWaveEnemy < 3;)
+		for (currWaveEnemy; currWaveEnemy < 6;)
 		{
 			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
 			currWaveEnemy++;
@@ -427,8 +432,11 @@ void SceneText::Update(double dt)
 	if (KeyboardController::GetInstance()->IsKeyReleased('M'))
 	{
 		CSceneNode* theNode = CSceneGraph::GetInstance()->GetNode(1);
-		Vector3 pos = theNode->GetEntity()->GetPosition();
-		theNode->GetEntity()->SetPosition(Vector3(pos.x + 40.0f, pos.y, pos.z + 40.0f));
+		if (theNode != NULL)
+		{
+			Vector3 pos = theNode->GetEntity()->GetPosition();
+			theNode->GetEntity()->SetPosition(Vector3(pos.x + 40.0f, pos.y, pos.z + 40.0f));
+		}
 	}
 	if (KeyboardController::GetInstance()->IsKeyReleased('N'))
 	{
@@ -494,6 +502,10 @@ void SceneText::Update(double dt)
 	ss1.str("");
 	ss1 << "Weapon: " << playerInfo->GetWeaponName();
 	textObj[5]->SetText(ss1.str());
+
+	ss1.str("");
+	ss1 << "Score: " << playerInfo->playerScore;
+	textObj[6]->SetText(ss1.str());
 	/*ss1.str("");
 	ss1 << "Enemies: " << theEnemy->GetEnemyCount();
 	textObj[5]->SetText(ss1.str());*/

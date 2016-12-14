@@ -33,6 +33,7 @@ protected:
 	//CEnemy* result;
 	EnemyFollower* ef;
 	EnemyFollower* ez;
+	int follow = 0;
 public:
 
 	CEnemy(void);
@@ -42,7 +43,7 @@ public:
 		const float m_fSpeed, GroundEntity* m_pTerrain);
 	void Init(void);
 	void Reset(void);
-
+	void SetNumOfFollowers(int followers);
 	//Set position
 	void SetPos(const Vector3& pos);
 	void SetTarget(const Vector3& target);
