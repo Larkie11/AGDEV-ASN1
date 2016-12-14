@@ -11,7 +11,7 @@
 #include "GenericEntity.h"
 #include "SceneGraph/UpdateTransformation.h"
 #include "Enemy\Enemy.h"
-#include <Windows.h>
+#include <ctime>
 
 class ShaderProgram;
 class SceneManager;
@@ -38,10 +38,10 @@ private:
 	TextEntity* textObj[10];
 	Light* lights[2];
 	GenericEntity* theCube[5];
-	int Start;
-	bool wave2 = false;
+	unsigned t0;
+	string waveNo = "1";
 	int currWaveEnemy = 0;
-	double elasped = 0;
+	unsigned  elasped = 0;
 	CEnemy* theEnemy;
 	static SceneText* sInstance; // The pointer to the object that gets registered
 };
