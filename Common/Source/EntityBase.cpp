@@ -48,7 +48,14 @@ bool EntityBase::HasCollider(void) const
 {
 	return m_bCollider;
 }
-
+std::string EntityBase::GetIsCamp()
+{
+	return isCamp;
+}
+void EntityBase::IsCamp(std::string iscamp)
+{
+	isCamp = iscamp;
+}
 // Set the flag to indicate if this entity has a collider class parent
 void EntityBase::SetCollider(const bool _value)
 {

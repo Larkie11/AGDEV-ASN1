@@ -34,6 +34,7 @@ protected:
 	EnemyFollower* ef;
 	EnemyFollower* ez;
 public:
+
 	CEnemy(void);
 	virtual ~CEnemy();
 	void Init(const Vector3& _position,
@@ -65,6 +66,7 @@ public:
 	//Constrain position within borders
 	void Constrain(void);
 	void Render(void);
+	int enemyNumber = 0;
 };
 
 namespace Create

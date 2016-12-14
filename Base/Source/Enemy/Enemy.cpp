@@ -122,14 +122,18 @@ GroundEntity* CEnemy::GetTerrain(void)
 }
 void CEnemy::Update(double dt)
 {
-	Vector3 viewVector = (target - position).Normalized();
-	position += viewVector * (float)m_dSpeed * (float)dt;
+	if (target != position)
+	{
+		Vector3 viewVector = (target - position).Normalized();
 
+		position += viewVector * (float)m_dSpeed * (float)dt;
+	}
 	//enemyHand->SetPos(position - 10);
 	Constrain();	
 	distance = (position - target).LengthSquared();
 	ez->SetPos(Vector3(position.x, position.y - 7, position.z));
 	ef->SetPos(position-10);
+
 	/*if (distance > 100)
 	{
 		Vector3 direction = (moveto - position).Normalize();
@@ -157,7 +161,7 @@ void CEnemy::Constrain(void)
 
 	if (distance < 100)
 	{
-		target.Set(Math::RandIntMinMax(100, 200), 0.0f, Math::RandIntMinMax(100, 200));
+		//target.Set(Math::RandIntMinMax(100, 200), 0.0f, Math::RandIntMinMax(100, 200));
 	}
 }
 void CEnemy::Render(void)

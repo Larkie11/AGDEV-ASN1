@@ -46,8 +46,8 @@ SceneText::~SceneText()
 void SceneText::Init()
 {
 	currProg = GraphicsManager::GetInstance()->LoadShader("default", "Shader//Texture.vertexshader", "Shader//Texture.fragmentshader");
-	
 	// Tell the shader program to store these uniform locations
+	Start = GetTickCount();
 	currProg->AddUniform("MVP");
 	currProg->AddUniform("MV");
 	currProg->AddUniform("MV_inverse_transpose");
@@ -150,6 +150,10 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
 	////LOD objs for assignment 1
+	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//M24R.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Camp", "Obj//Camp.obj");
+	MeshBuilder::GetInstance()->GetMesh("Camp")->textureID = LoadTGA("Image//wood.tga");
+
 	MeshBuilder::GetInstance()->GenerateOBJ("Head", "Obj//Head.obj");
 	MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
 
@@ -261,6 +265,13 @@ void SceneText::Init()
 	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
 	//}
 
+	GenericEntity* anotherCube = Create::Entity("Camp", Vector3(0.0f, -5.f, 0.0f));
+	anotherCube->SetCollider(true);
+	anotherCube->SetAABB(Vector3(10.f, 10.f, 10.f), Vector3(-10.f, -10.f, -10.f));
+	anotherCube->InitLOD("Camp", "lightball", "lightball");
+	anotherCube->IsEnemy(false);
+	anotherCube->IsCamp("Camp");
+
 	//GenericEntity* bCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -10.0f));
 	//bCube->SetCollider(true);
 	//bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
@@ -306,7 +317,7 @@ void SceneText::Init()
 	playerInfo->SetTerrain(groundEntity);
 	for (int i = 0; i < 3; i++)
 	{
-		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 250)), Vector3(Math::RandIntMinMax(-100, 100), 0.0f, Math::RandIntMinMax(-100, 100)), Math::RandFloatMinMax(-5.f,15.f), groundEntity);
+		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-250, -200), 0.0f, Math::RandIntMinMax(-200, -200)),Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f,15.f), groundEntity);
 	}
 /*for (int i = 0; i < 10;)
 	{
@@ -322,7 +333,8 @@ void SceneText::Init()
 	float halfWindowHeight = Application::GetInstance().GetWindowHeight() / 2.0f;
 	float fontSize = 25.0f;
 	float halfFontSize = fontSize / 2.0f;
-	for (int i = 0; i < 6; ++i)
+
+	for (int i = 0; i < 10; ++i)
 	{
 		textObj[i] = Create::Text2DObject("text", Vector3(-halfWindowWidth, -halfWindowHeight + fontSize*i + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f,1.0f,0.0f));
 	}
@@ -333,7 +345,7 @@ void SceneText::Update(double dt)
 {
 	// Update our entities
 	EntityManager::GetInstance()->Update(dt);
-	
+	elasped = ((GetTickCount() - Start)/1000)%60;
 	// THIS WHOLE CHUNK TILL <THERE> CAN REMOVE INTO ENTITIES LOGIC! Or maybe into a scene function to keep the update clean
 	if(KeyboardController::GetInstance()->IsKeyDown('1'))
 		glEnable(GL_CULL_FACE);
@@ -356,7 +368,21 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
+	if (elasped == 50 && !wave2)
+	{
+		wave2 = true;
+	}
 
+	if (wave2)
+	{
+		for (currWaveEnemy; currWaveEnemy < 3;)
+		{
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, -200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			currWaveEnemy++;
+		}
+		if (currWaveEnemy > 1)
+			wave2 = false;
+	}
 	if(KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
 	if(KeyboardController::GetInstance()->IsKeyDown('K'))
@@ -410,7 +436,7 @@ void SceneText::Update(double dt)
 	//camera.Update(dt); // Can put the camera into an entity rather than here (Then we don't have to write this)
 
 	GraphicsManager::GetInstance()->UpdateLights(dt);
-
+	playerInfo->Render("m24r");
 	// Update the 2 text object values. NOTE: Can do this in their own class but i'm lazy to do it now :P
 	// Eg. FPSRenderEntity or inside RenderUI for LightEntity
 	std::ostringstream ss;
@@ -419,22 +445,31 @@ void SceneText::Update(double dt)
 	ss << "FPS: " << fps;
 	textObj[1]->SetText(ss.str());
 
+
+
 	std::ostringstream ss1;
 	ss1.precision(4);
-	ss1 << "Player:" << playerInfo->GetPos();
+	//ss1 << "Player:" << playerInfo->GetPos();
+	//textObj[2]->SetText(ss1.str());
+	ss1.str("");
+	ss1 << "TIME: " << elasped;
 	textObj[2]->SetText(ss1.str());
 
 	ss1.str("");
 	ss1 << "Ammo: " << playerInfo->GetMagRound();
-	textObj[3]->SetText(ss1.str());
+	textObj[3]->SetText(ss1.str()); 
+
+	ss1.str("");
+	ss1 << "Player Health: "<<  playerInfo->playerHealth;
+	textObj[4]->SetText(ss1.str());
 
 	ss1.str("");
 	ss1 << "Weapon: " << playerInfo->GetWeaponName();
-	textObj[4]->SetText(ss1.str());
-
+	textObj[5]->SetText(ss1.str());
 	/*ss1.str("");
 	ss1 << "Enemies: " << theEnemy->GetEnemyCount();
 	textObj[5]->SetText(ss1.str());*/
+
 }
 
 void SceneText::Render()

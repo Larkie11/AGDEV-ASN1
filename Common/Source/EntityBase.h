@@ -23,6 +23,8 @@ public:
 	inline Vector3 GetRotation(){ return rotation; };
 
 	void IsEnemy(bool value = false);
+	void IsCamp(std::string value = "");
+	std::string GetIsCamp();
 	virtual bool GetIsEnemy();
 	bool IsDone();
 	void SetIsDone(const bool _value);
@@ -45,6 +47,7 @@ protected:
 	bool isDone;
 	bool m_bCollider;
 	bool bLaser;
+	std::string isCamp;
 };
 
 #endif // ENTITY_BASE_H
