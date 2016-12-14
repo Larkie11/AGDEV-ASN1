@@ -125,7 +125,7 @@ void CPlayerInfo::SetToJumpUpwards(bool isOnJumpUpwards)
 	{
 		m_bJumpUpwards = true;
 		m_bFallDownwards = false;
-		m_dJumpSpeed = 4.0;
+		m_dJumpSpeed = 6.0;
 	}
 }
 

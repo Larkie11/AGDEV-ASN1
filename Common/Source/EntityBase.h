@@ -19,6 +19,9 @@ public:
 	inline void SetScale(const Vector3& _value){ scale = _value; };
 	inline Vector3 GetScale(){ return scale; };
 
+	inline void SetRotation(const Vector3& _value){ rotation = _value; };
+	inline Vector3 GetRotation(){ return rotation; };
+
 	void IsEnemy(bool value = false);
 	virtual bool GetIsEnemy();
 	bool IsDone();
@@ -36,6 +39,7 @@ public:
 protected:
 	Vector3 position;
 	Vector3 scale;
+	Vector3 rotation;
 
 	bool isEnemy;
 	bool isDone;

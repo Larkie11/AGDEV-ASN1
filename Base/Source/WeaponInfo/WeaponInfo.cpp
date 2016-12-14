@@ -1,6 +1,8 @@
 #include "WeaponInfo.h"
 #include "../Projectile/Projectile.h"
 #include "../PlayerInfo/PlayerInfo.h"
+#include "GraphicsManager.h"
+#include "MyMath.h"
 #include <iostream>
 using namespace std;
 
@@ -139,6 +141,7 @@ void CWeaponInfo::Update(const double dt)
 // Discharge this weapon
 void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _source)
 {
+	//MS& modelStack = GraphicsManager::GetInstance()->GetModelStack();
 	if (bFire)
 	{
 		// If there is still ammo in the magazine, then fire
@@ -152,8 +155,9 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 				position,
 				(target - position).Normalized(),
 				6.0f,
-				20.0f,
+				30.0f,
 				_source);
+			
 			aProjectile->SetCollider(true);
 			aProjectile->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
 			aProjectile->IsEnemy(false);
@@ -165,11 +169,11 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 			{
 				// Create a projectile with a cube mesh. Its position and direction is same as the player.
 				// It will last for 3.0 seconds and travel at 500 units per second
-				CProjectile* aProjectile = Create::Projectile("sgbullet",
+				CProjectile* aProjectile = Create::Projectile("shotgunB",
 					position,
 					(target - position).Normalized(),
 					5.0f,
-					30.f,
+					50.f,
 					_source);
 				aProjectile->SetCollider(true);
 				aProjectile->IsEnemy(false);

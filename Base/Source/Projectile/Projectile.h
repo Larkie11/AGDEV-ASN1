@@ -2,6 +2,7 @@
 #include "EntityBase.h"
 #include "Vector3.h"
 #include "Collider/Collider.h"
+#include "../FPSCamera.h"
 
 class Mesh;
 class CPlayerInfo;
@@ -55,6 +56,7 @@ protected:
 	Vector3 theDirection;
 	// The character which fired this projectile
 	CPlayerInfo* theSource;
+	FPSCamera camera;
 };
 
 namespace Create

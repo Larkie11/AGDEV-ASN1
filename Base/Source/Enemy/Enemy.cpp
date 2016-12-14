@@ -140,6 +140,7 @@ void CEnemy::Update(double dt)
 		arrived = true;
 	}*/
 }
+
 void CEnemy::Constrain(void)
 {
 	if (position.x > maxBoundary.x - 1.0f)

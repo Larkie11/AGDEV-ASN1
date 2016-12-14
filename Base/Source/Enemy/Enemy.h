@@ -27,6 +27,7 @@ protected:
 	CSceneNode* enemyNode;
 	CUpdateTransformation* aRotateMtx;
 
+	
 	float distance;
 	CEnemy* enemyHand;
 	//CEnemy* result;

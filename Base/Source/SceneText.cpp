@@ -185,8 +185,10 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("Tree_low", "Obj//tree_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Tree_low")->textureID = LoadTGA("Image//tree_low.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("pistolB", "Obj//bullet.obj");
-	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//bullet.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("pistolB", "Obj//pistolbullet.obj");
+	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//pistolbullet.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
+	MeshBuilder::GetInstance()->GetMesh("shotgunB")->textureID = LoadTGA("Image//shotgunbullet.tga");
 	
 	//MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
 	//MeshBuilder::GetInstance()->GenerateOBJ("robothead", "Obj//RobotHead.obj");
@@ -320,7 +322,7 @@ void SceneText::Init()
 	float halfWindowHeight = Application::GetInstance().GetWindowHeight() / 2.0f;
 	float fontSize = 25.0f;
 	float halfFontSize = fontSize / 2.0f;
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 6; ++i)
 	{
 		textObj[i] = Create::Text2DObject("text", Vector3(-halfWindowWidth, -halfWindowHeight + fontSize*i + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f,1.0f,0.0f));
 	}
@@ -372,7 +374,7 @@ void SceneText::Update(double dt)
 	{
 		CSceneNode* theNode = CSceneGraph::GetInstance()->GetNode(1);
 		Vector3 pos = theNode->GetEntity()->GetPosition();
-		theNode->GetEntity()->SetPosition(Vector3(pos.x + 50.0f, pos.y, pos.z + 50.0f));
+		theNode->GetEntity()->SetPosition(Vector3(pos.x + 40.0f, pos.y, pos.z + 40.0f));
 	}
 	if (KeyboardController::GetInstance()->IsKeyReleased('N'))
 	{
@@ -429,6 +431,10 @@ void SceneText::Update(double dt)
 	ss1.str("");
 	ss1 << "Weapon: " << playerInfo->GetWeaponName();
 	textObj[4]->SetText(ss1.str());
+
+	/*ss1.str("");
+	ss1 << "Enemies: " << theEnemy->GetEnemyCount();
+	textObj[5]->SetText(ss1.str());*/
 }
 
 void SceneText::Render()

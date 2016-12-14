@@ -121,6 +121,7 @@ void CProjectile::Update(double dt)
 	position.Set(	position.x + (float)(theDirection.x * dt * m_fSpeed),
 					position.y + (float)(theDirection.y * dt * m_fSpeed),
 					position.z + (float)(theDirection.z * dt * m_fSpeed));
+	
 }
 
 
@@ -133,9 +134,11 @@ void CProjectile::Render(void)
 	if (m_fLifetime < 0.0f)
 		return;
 
+	//float angle = Math::RadianToDegree(atan2(camera.GetCameraPos().z - position.z, camera.GetCameraPos().z - position.x));
 	MS& modelStack = GraphicsManager::GetInstance()->GetModelStack();
 	modelStack.PushMatrix();
 	modelStack.Translate(position.x, position.y, position.z);
+	modelStack.Rotate(Math::RadianToDegree(atan2(camera.GetCameraPos().z - position.z, camera.GetCameraPos().x - position.x)) - 90, 0, -1, 0);
 	//modelStack.Scale(scale.x, scale.y, scale.z);
 	RenderHelper::RenderMesh(modelMesh);
 	modelStack.PopMatrix();
