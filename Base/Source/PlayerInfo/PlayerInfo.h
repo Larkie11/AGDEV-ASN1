@@ -5,6 +5,7 @@
 #include "../WeaponInfo/WeaponInfo.h"
 #include <string>
 using std::string;
+#include "../Sound.h"
 
 class CPlayerInfo
 {
@@ -121,6 +122,7 @@ private:
 	WeaponType wt;
 	double m_dSpeed;
 	double m_dAcceleration;
+
 
 	bool m_bJumpUpwards;
 	double m_dJumpSpeed;

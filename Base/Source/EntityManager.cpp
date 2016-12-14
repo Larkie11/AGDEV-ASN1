@@ -405,6 +405,12 @@ bool EntityManager::CheckForCollision(void)
 							if (thisEntity->GetIsEnemy() && thatEntity->GetIsEnemy())
 							{
 							}
+							else if (thisEntity->GetIsCamp() == "Camp" && thatEntity->GetIsCamp() == "Bullet")
+							{
+							}
+							else if (thatEntity->GetIsCamp() == "Camp" && thisEntity->GetIsCamp() == "Bullet")
+							{
+							}
 							else
 							{
 								if (thisEntity != NULL && thatEntity != NULL)

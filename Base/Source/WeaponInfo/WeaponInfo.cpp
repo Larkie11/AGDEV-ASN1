@@ -149,6 +149,8 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 		{
 			if (_source->GetWeaponType() == CPlayerInfo::WT_PISTOL)
 			{
+				sound.playSE("Music//Mining.mp3");
+
 				// Create a projectile with a cube mesh. Its position and direction is same as the player.
 				// It will last for 3.0 seconds and travel at 500 units per second
 				CProjectile* aProjectile = Create::Projectile("pistolB",
@@ -161,12 +163,15 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 			aProjectile->SetCollider(true);
 			aProjectile->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
 			aProjectile->IsEnemy(false);
+			aProjectile->IsCamp("Bullet");
 
 			bFire = false;
 			magRounds--;
 			}
 			if (_source->GetWeaponType() == CPlayerInfo::WT_GUN)
 			{
+				sound.playSE("Music//Mining.mp3");
+
 				// Create a projectile with a cube mesh. Its position and direction is same as the player.
 				// It will last for 3.0 seconds and travel at 500 units per second
 				CProjectile* aProjectile = Create::Projectile("shotgunB",
@@ -177,6 +182,7 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 					_source);
 				aProjectile->SetCollider(true);
 				aProjectile->IsEnemy(false);
+				aProjectile->IsCamp("Bullet");
 				aProjectile->SetAABB(Vector3(0.2f, 0.2f, 0.2f), Vector3(-0.2f, -0.2f, -0.2f));
 				bFire = false;
 				magRounds--;
