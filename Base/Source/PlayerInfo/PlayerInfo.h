@@ -54,7 +54,7 @@ public:
 	void StopVerticalMovement(void);
 	// Reset this player instance to default
 	void Reset(void);
-
+	void Render(string MeshName);
 	// Set position
 	void SetPos(const Vector3& pos);
 	// Set target
@@ -109,6 +109,7 @@ public:
 	// Handling Camera
 	void AttachCamera(FPSCamera* _cameraPtr);
 	void DetachCamera(void);
+	int playerHealth = 100;
 
 private:
 	Vector3 defaultPosition, defaultTarget, defaultUp;

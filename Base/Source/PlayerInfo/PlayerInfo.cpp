@@ -9,6 +9,9 @@
 #include "../WeaponInfo/LaserBlaster.h"
 #include "../WeaponInfo/GrenadeThrow.h"
 #include "../WeaponInfo/Shotgun.h"
+#include "GraphicsManager.h"
+#include "RenderHelper.h"
+#include "MeshBuilder.h"
 
 // Allocating and initializing CPlayerInfo's static data member.  
 // The pointer is allocated but not the object's constructor.
@@ -31,6 +34,8 @@ CPlayerInfo::CPlayerInfo(void)
 	, primaryWeapon(NULL)
 	, secondaryWeapon(NULL)
 {
+	target.SetZero();
+	position.SetZero();
 }
 
 CPlayerInfo::~CPlayerInfo(void)
@@ -183,7 +188,10 @@ void CPlayerInfo::StopVerticalMovement(void)
 	m_bJumpUpwards = false;
 	m_bFallDownwards = false;
 }
-
+void CPlayerInfo::Render(string MeshName)
+{
+	
+}
 // Reset this player instance to default
 void CPlayerInfo::Reset(void)
 {

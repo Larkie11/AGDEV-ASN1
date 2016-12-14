@@ -47,6 +47,8 @@ private:
 	
 	// Handler to Spatial Partition
 	CSpatialPartition* theSpatialPartition;
+private:
+	int enemyKilled = 0;
 };
 
 #endif // ENTITY_MANAGER_H

@@ -3,6 +3,8 @@
 #include "Collider/Collider.h"
 #include "Projectile/Laser.h"
 #include "SceneGraph\SceneGraph.h"
+#include "PlayerInfo\PlayerInfo.h"
+#include "Enemy\Enemy.h"
 
 #include <iostream>
 using namespace std;
@@ -407,10 +409,22 @@ bool EntityManager::CheckForCollision(void)
 							{
 								if (thisEntity != NULL && thatEntity != NULL)
 								{
-
-									thisEntity->SetIsDone(true);
-									thatEntity->SetIsDone(true);
-									// Remove from Scene Graph
+									if (thisEntity->GetIsCamp() == "Camp")
+									{
+										thatEntity->SetIsDone(true);
+										CPlayerInfo::GetInstance()->playerHealth -= 2;
+									}
+									else if (thatEntity->GetIsCamp() == "Camp")
+									{
+										thisEntity->SetIsDone(true);
+										CPlayerInfo::GetInstance()->playerHealth -= 2;
+									}
+									else
+									{
+										thatEntity->SetIsDone(true);
+										thisEntity->SetIsDone(true);
+									}
+									
 									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
 									{
 										cout << "*** This Entity removed ***" << endl;
