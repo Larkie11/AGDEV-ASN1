@@ -188,10 +188,7 @@ void CPlayerInfo::StopVerticalMovement(void)
 	m_bJumpUpwards = false;
 	m_bFallDownwards = false;
 }
-void CPlayerInfo::Render(string MeshName)
-{
-	
-}
+
 // Reset this player instance to default
 void CPlayerInfo::Reset(void)
 {
@@ -297,6 +294,35 @@ string CPlayerInfo::GetWeaponName()
 CPlayerInfo::WeaponType CPlayerInfo::GetWeaponType()
 {
 	return wt;
+}
+void CPlayerInfo::Render(const std::string& _meshName)
+{
+	//Vector3 view = (target - position).Normalized();
+
+	//MS& modelStack = GraphicsManager::GetInstance()->GetModelStack();
+	//modelStack.PushMatrix();
+	//modelStack.LoadIdentity();
+
+	////modelStack.Translate(0.f, -2.f, 0.f);
+	////modelStack.Rotate(-85 + Math::RadianToDegree(atan2(view.x, view.z)), 0, 1, 0);
+	////modelStack.Rotate(90.f - Math::RadianToDegree(acos(view.Dot(Vector3(0, 1, 0)))), 0, 0, 1);
+	//modelStack.Translate(1.6f, -50.f, 50.f);
+	//modelStack.Scale(20, 20, 20);
+	//RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("m24r"));
+	//modelStack.PopMatrix();
+	Vector3 view = (target - position).Normalized();
+
+	MS& modelStack = GraphicsManager::GetInstance()->GetModelStack();
+	modelStack.PushMatrix();
+	modelStack.LoadIdentity();
+
+	modelStack.Translate(position.x + view.x, position.y + view.y, position.z + view.z);
+	modelStack.Rotate(-80 + Math::RadianToDegree(atan2(view.x, view.z)), 0, 1, 0);
+	modelStack.Rotate(90 - Math::RadianToDegree(acos(view.Dot(Vector3(0, 1, 0)))), 0, 0, 1);
+	modelStack.Translate(1.6f, -0.6f, 0.6f);
+
+	RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh(_meshName));
+	modelStack.PopMatrix();
 }
 int CPlayerInfo::GetMagRound()
 {

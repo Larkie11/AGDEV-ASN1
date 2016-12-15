@@ -148,6 +148,9 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateQuad("GROUND", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GetMesh("GROUND")->textureID = LoadTGA("Image//ground.tga");
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
+	MeshBuilder::GetInstance()->GenerateOBJ("gun", "OBJ//gun.obj");
+	MeshBuilder::GetInstance()->GetMesh("gun")->textureID = LoadTGA("Image//gun.tga");
+
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
 	////LOD objs for assignment 1
 	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//M24R.obj");
@@ -295,6 +298,8 @@ void SceneText::Init()
 	bCube->SetCollider(true);
 	bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
 	bCube->InitLOD("m24r", "lightball", "cubeSG");
+	//CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(playerInfo);
+	//CSceneNode* childNode = baseNode->AddChild(bCube);
 	//
 	//GenericEntity* baseCube = Create::Asset("cube", Vector3(0.0f, 0.0f, 0.0f));
 	//CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(baseCube);
@@ -493,7 +498,6 @@ void SceneText::Update(double dt)
 	//camera.Update(dt); // Can put the camera into an entity rather than here (Then we don't have to write this)
 
 	GraphicsManager::GetInstance()->UpdateLights(dt);
-	playerInfo->Render("m24r");
 	// Update the 2 text object values. NOTE: Can do this in their own class but i'm lazy to do it now :P
 	// Eg. FPSRenderEntity or inside RenderUI for LightEntity
 	std::ostringstream ss;
@@ -565,13 +569,15 @@ void SceneText::Render()
 	GraphicsManager::GetInstance()->SetPerspectiveProjection(45.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 	GraphicsManager::GetInstance()->AttachCamera(&camera);
 	EntityManager::GetInstance()->Render();
+	playerInfo->Render("m24r");
 
 	// Setup 2D pipeline then render 2D
 	int halfWindowWidth = Application::GetInstance().GetWindowWidth() / 2;
 	int halfWindowHeight = Application::GetInstance().GetWindowHeight() / 2;
 	GraphicsManager::GetInstance()->SetOrthographicProjection(-halfWindowWidth, halfWindowWidth, -halfWindowHeight, halfWindowHeight, -10, 10);
 	GraphicsManager::GetInstance()->DetachCamera();
-	EntityManager::GetInstance()->RenderUI();
+	EntityManager::GetInstance()->RenderUI();	
+
 }
 
 void SceneText::Exit()

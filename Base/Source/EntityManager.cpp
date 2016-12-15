@@ -418,18 +418,18 @@ bool EntityManager::CheckForCollision(void)
 									if (thisEntity->GetIsCamp() == "Camp")
 									{
 										thatEntity->SetIsDone(true);
-										CPlayerInfo::GetInstance()->playerHealth -= 2;
+										//CPlayerInfo::GetInstance()->playerHealth -= 2;
 									}
 									else if (thatEntity->GetIsCamp() == "Camp")
 									{
 										thisEntity->SetIsDone(true);
-										CPlayerInfo::GetInstance()->playerHealth -= 2;
+										//CPlayerInfo::GetInstance()->playerHealth -= 2;
 									}
 									else
 									{
 										thatEntity->SetIsDone(true);
 										thisEntity->SetIsDone(true);
-										CPlayerInfo::GetInstance()->playerScore++;
+										//CPlayerInfo::GetInstance()->playerScore++;
 									}
 									
 									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)
