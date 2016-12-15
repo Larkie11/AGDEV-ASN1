@@ -489,7 +489,8 @@ void SceneText::Update(double dt)
 
 	if (elasped >= survive)
 		waveNo = "WIN";
-
+	if (playerInfo->playerHealth <= 0)
+		waveNo = "LOSE";
 
 	if (KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
@@ -587,7 +588,7 @@ void SceneText::Update(double dt)
 	if (waveNo == "1")
 	{
 		ss1.str("");
-		ss1 << "Wave 1 in: " << 40 - elasped << "s";
+		ss1 << "Wave 1 in: " << 20 - elasped << "s";
 		textObj[10]->SetText(ss1.str());
 	}
 	else if (waveNo == "1 ")
@@ -618,6 +619,12 @@ void SceneText::Update(double dt)
 	{
 		ss1.str("");
 		ss1 << "You have survived!";
+		textObj[10]->SetText(ss1.str());
+	}
+	if (waveNo == "LOSE")
+	{
+		ss1.str("");
+		ss1 << "You lost!";
 		textObj[10]->SetText(ss1.str());
 	}
 	/*ss1.str("");
