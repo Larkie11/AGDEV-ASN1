@@ -439,6 +439,7 @@ bool EntityManager::CheckForCollision(void)
 									// Remove from Scene Graph
 									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThat)) == true)
 									{
+										if ((*colliderThat)->GetIsEnemy())
 										cout << "*** That Entity removed ***" << endl;
 									}
 								}

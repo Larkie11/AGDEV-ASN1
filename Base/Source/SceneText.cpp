@@ -337,6 +337,7 @@ void SceneText::Init()
 	{
 		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-300, -300), 0.0f, Math::RandIntMinMax(-300, -300)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
 		theEnemy->SetNumOfFollowers(0);
+		theEnemy->enemyNumber++;
 	}
 /*for (int i = 0; i < 10;)
 	{
@@ -367,26 +368,26 @@ void SceneText::Update(double dt)
 {
 	// Update our entities
 	EntityManager::GetInstance()->Update(dt);
-	elasped = (clock() - t0) /CLOCKS_PER_SEC;
+	elasped = (clock() - t0) / CLOCKS_PER_SEC;
 	// THIS WHOLE CHUNK TILL <THERE> CAN REMOVE INTO ENTITIES LOGIC! Or maybe into a scene function to keep the update clean
-	if(KeyboardController::GetInstance()->IsKeyDown('1'))
+	if (KeyboardController::GetInstance()->IsKeyDown('1'))
 		glEnable(GL_CULL_FACE);
-	if(KeyboardController::GetInstance()->IsKeyDown('2'))
+	if (KeyboardController::GetInstance()->IsKeyDown('2'))
 		glDisable(GL_CULL_FACE);
-	if(KeyboardController::GetInstance()->IsKeyDown('3'))
+	if (KeyboardController::GetInstance()->IsKeyDown('3'))
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	if(KeyboardController::GetInstance()->IsKeyDown('4'))
+	if (KeyboardController::GetInstance()->IsKeyDown('4'))
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	
-	if(KeyboardController::GetInstance()->IsKeyDown('5'))
+
+	if (KeyboardController::GetInstance()->IsKeyDown('5'))
 	{
 		lights[0]->type = Light::LIGHT_POINT;
 	}
-	else if(KeyboardController::GetInstance()->IsKeyDown('6'))
+	else if (KeyboardController::GetInstance()->IsKeyDown('6'))
 	{
 		lights[0]->type = Light::LIGHT_DIRECTIONAL;
 	}
-	else if(KeyboardController::GetInstance()->IsKeyDown('7'))
+	else if (KeyboardController::GetInstance()->IsKeyDown('7'))
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
@@ -394,39 +395,59 @@ void SceneText::Update(double dt)
 	{
 		waveNo = "2";
 	}
-	if (elasped == wave3)
+	if (elasped == wave3 && waveNo == "2 ")
 	{
 		waveNo = "3";
 		currWaveEnemy = 0;
 	}
+	if (elasped == 150 && waveNo == "3 ")
+	{
+		waveNo = "4";
+		currWaveEnemy = 0;
+	}
+
 	if (waveNo == "2")
 	{
 		for (currWaveEnemy; currWaveEnemy < 3;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(-20, 10.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
 			theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
+			waveNo = "2 ";
 	}
 	if (waveNo == "3")
 	{
-		for (currWaveEnemy; currWaveEnemy < 6;)
+		for (currWaveEnemy; currWaveEnemy < 5;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
+			//theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
+		waveNo = "3 ";
 	}
-	if(KeyboardController::GetInstance()->IsKeyDown('I'))
+	if (waveNo == "4")
+	{
+		for (currWaveEnemy; currWaveEnemy < 6;)
+		{
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			currWaveEnemy++;
+		}
+		waveNo = "4 ";
+	}
+	cout << waveNo << " " << currWaveEnemy << endl;
+
+	if (KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
-	if(KeyboardController::GetInstance()->IsKeyDown('K'))
+	if (KeyboardController::GetInstance()->IsKeyDown('K'))
 		lights[0]->position.z += (float)(10.f * dt);
-	if(KeyboardController::GetInstance()->IsKeyDown('J'))
+	if (KeyboardController::GetInstance()->IsKeyDown('J'))
 		lights[0]->position.x -= (float)(10.f * dt);
-	if(KeyboardController::GetInstance()->IsKeyDown('L'))
+	if (KeyboardController::GetInstance()->IsKeyDown('L'))
 		lights[0]->position.x += (float)(10.f * dt);
-	if(KeyboardController::GetInstance()->IsKeyDown('O'))
+	if (KeyboardController::GetInstance()->IsKeyDown('O'))
 		lights[0]->position.y -= (float)(10.f * dt);
-	if(KeyboardController::GetInstance()->IsKeyDown('P'))
+	if (KeyboardController::GetInstance()->IsKeyDown('P'))
 		lights[0]->position.y += (float)(10.f * dt);
 
 	if (KeyboardController::GetInstance()->IsKeyReleased('M'))
@@ -492,10 +513,10 @@ void SceneText::Update(double dt)
 
 	ss1.str("");
 	ss1 << "Ammo: " << playerInfo->GetMagRound();
-	textObj[3]->SetText(ss1.str()); 
+	textObj[3]->SetText(ss1.str());
 
 	ss1.str("");
-	ss1 << "Player Health: "<<  playerInfo->playerHealth;
+	ss1 << "Player Health: " << playerInfo->playerHealth;
 	textObj[4]->SetText(ss1.str());
 
 	ss1.str("");
@@ -516,7 +537,18 @@ void SceneText::Update(double dt)
 		ss1 << "Wave 2 in: " << wave2 - elasped << "s";
 		textObj[10]->SetText(ss1.str());
 	}
-
+	else if (waveNo == "2" || waveNo == "2 ")
+	{
+		ss1.str("");
+		ss1 << "Wave 3 in: " << wave3 - elasped << "s";
+		textObj[10]->SetText(ss1.str());
+	}
+	else if (waveNo == "3" || waveNo == "3 ")
+	{
+		ss1.str("");
+		ss1 << "Wave 4 in: " << 150 - elasped << "s";
+		textObj[10]->SetText(ss1.str());
+	}
 	/*ss1.str("");
 	ss1 << "Enemies: " << theEnemy->GetEnemyCount();
 	textObj[5]->SetText(ss1.str());*/

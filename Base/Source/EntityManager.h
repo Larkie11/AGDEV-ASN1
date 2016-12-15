@@ -5,6 +5,7 @@
 #include <list>
 #include "Vector3.h"
 #include "SpatialPartition\SpatialPartition.h"
+#include "Enemy\Enemy.h"
 
 class EntityBase;
 
@@ -49,6 +50,7 @@ private:
 	CSpatialPartition* theSpatialPartition;
 private:
 	int enemyKilled = 0;
+	CEnemy enemy;
 };
 
 #endif // ENTITY_MANAGER_H
