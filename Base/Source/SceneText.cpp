@@ -153,6 +153,11 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("gun")->textureID = LoadTGA("Image//gun.tga");
 	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH_GREEN", Color(0, 1, 0), 1.f);
 
+
+	MeshBuilder::GetInstance()->GenerateOBJ("windmillstick", "OBJ//windmillstick.obj");
+	MeshBuilder::GetInstance()->GetMesh("windmillstick")->textureID = LoadTGA("Image//windmillstick.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("windmillblade", "OBJ//windmillblade.obj");
+
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
 	////LOD objs for assignment 1
 	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//M24R.obj");
@@ -273,6 +278,27 @@ void SceneText::Init()
 	Create::Entity("reference", Vector3(0.0f, 0.0f, 0.0f)); // Reference
 	Create::Entity("lightball", Vector3(lights[0]->position.x, lights[0]->position.y, lights[0]->position.z)); // Lightball
 
+
+	GenericEntity* stick = Create::Asset("windmillstick", Vector3(0.0f, 0.0f, 0.0f));
+	CSceneNode* stickNode = CSceneGraph::GetInstance()->AddNode(stick);
+
+	//animation
+	/*CUpdateTransformation* stickMtx = new CUpdateTransformation();
+	stickMtx->ApplyUpdate(0.0f, 0.0f, 1.0f);
+	stickMtx->SetSteps(-5, 5);
+	stickNode->SetUpdateTransformation(stickMtx);*/
+
+	//blade
+	//GenericEntity* blade = Create::Asset("windmillblade", Vector3(0.0f, 0.0f, 0.0f));
+	//CSceneNode* bladeNode = stickNode->AddChild(blade);
+	//bladeNode->ApplyTranslate(0.0f, 0.0f, 1.0f);
+
+	////animation
+	//CUpdateTransformation* bladeMtx = new CUpdateTransformation();
+	//bladeMtx->ApplyUpdate(45.0f, 1.0f, 0.0f, 0.0f);
+	//bladeMtx->SetSteps(-500, 500);
+	//bladeNode->SetUpdateTransformation(bladeMtx);
+
 	GenericEntity* robot = Create::Entity("robot1_high", Vector3(100.0f, 0.0f, -100.0f));
 	robot->SetCollider(true);
 	robot->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
@@ -339,19 +365,19 @@ void SceneText::Init()
 	//CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(playerInfo);
 	//CSceneNode* childNode = baseNode->AddChild(bCube);
 	//
-	//GenericEntity* baseCube = Create::Asset("cube", Vector3(0.0f, 0.0f, 0.0f));
-	//CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(baseCube);
+	GenericEntity* windmill = Create::Asset("windmillstick", Vector3(0.0f, 5.0f, 0.0f), Vector3(1.0, 0.5f, 1.0f));
+	CSceneNode* windmillNode = CSceneGraph::GetInstance()->AddNode(windmill);
 
 	//baseCube->InitLOD("cubeSG", "lightball", "lightball");
 
-	//CUpdateTransformation* baseMtx = new CUpdateTransformation();
-	//baseMtx->ApplyUpdate(1.0f, 0.0f, 0.0f, 1.0f);
-	//baseMtx->SetSteps(-60, 60);
-	//baseNode->SetUpdateTransformation(baseMtx);
+	CUpdateTransformation* baseMtx = new CUpdateTransformation();
+	baseMtx->ApplyUpdate(100.0f, 0.0f, 0.0f, 1.0f);
+	baseMtx->SetSteps(-60, 60);
+	windmillNode->SetUpdateTransformation(baseMtx);
 
-	//GenericEntity* childCube = Create::Asset("cubeSG", Vector3(0.0f, 0.0f, 0.0f));
-	//CSceneNode* childNode = baseNode->AddChild(childCube);
-	//childNode->ApplyTranslate(0.0f, 1.0f, 0.0f);
+	GenericEntity* childwindmill = Create::Asset("windmillstick", Vector3(0.0f, 0.0f, 0.0f));
+	CSceneNode* childNode = windmillNode->AddChild(childwindmill);
+	childNode->ApplyTranslate(0.0f, 1.0f, 0.0f);
 	//childCube->InitLOD("cubeSG", "lightball", "cube");
 
 	//GenericEntity* grandchildCube = Create::Asset("cubeSG", Vector3(0.0f, 0.0f, 0.0f));
