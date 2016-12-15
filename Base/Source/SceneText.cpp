@@ -183,7 +183,7 @@ void SceneText::Init()
 	//MeshBuilder::GetInstance()->GenerateOBJ("Head", "Obj//Head.obj");
 	//MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
 	
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_high", "Obj//robotspawncamp1_high.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_high")->textureID = LoadTGA("Image//robotspawncamp1_high.tga");
@@ -218,25 +218,27 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_low", "Obj//android_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_low.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
-	//MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("Dog_mid", "Obj//dog_mid.obj");
-	//MeshBuilder::GetInstance()->GetMesh("Dog_mid")->textureID = LoadTGA("Image//dog_mid.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("Dog_low", "Obj//dog_low.obj");
-	//MeshBuilder::GetInstance()->GetMesh("Dog_low")->textureID = LoadTGA("Image//dog_low.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("House_high", "Obj//house_high.obj"); //model 4
 	MeshBuilder::GetInstance()->GetMesh("House_high")->textureID = LoadTGA("Image//house_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("House_mid", "Obj//house_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("House_mid")->textureID = LoadTGA("Image//house_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("House_low", "Obj//house_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("House_low")->textureID = LoadTGA("Image//house_low.tga");
+	/*
+	MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
+	MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Dog_mid", "Obj//dog_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Dog_mid")->textureID = LoadTGA("Image//dog_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Dog_low", "Obj//dog_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Dog_low")->textureID = LoadTGA("Image//dog_low.tga");
+	
 	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_high", "Obj//tree_high.obj"); //model 5
 	//MeshBuilder::GetInstance()->GetMesh("Tree_high")->textureID = LoadTGA("Image//tree_high.tga");
 	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_mid", "Obj//tree_mid.obj");
 	//MeshBuilder::GetInstance()->GetMesh("Tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
 	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_low", "Obj//tree_low.obj");
 	//MeshBuilder::GetInstance()->GetMesh("Tree_low")->textureID = LoadTGA("Image//tree_low.tga");
-
+	*/
 	MeshBuilder::GetInstance()->GenerateOBJ("pistolB", "Obj//pistolbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//pistolbullet.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
@@ -275,8 +277,8 @@ void SceneText::Init()
 	robot->SetCollider(true);
 	robot->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
 	robot->InitLOD("robot1_high", "robot1_mid", "robot_low");
-
-	/*GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
+	/*
+	GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
 	dog->SetCollider(true);
 	dog->SetAABB(Vector3(3.f, 3.f, 3.f), Vector3(-3.f, -3.f, -3.f));
 	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");*/
@@ -433,7 +435,7 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
-	if (elasped == wave2 && waveNo != "2")
+	if (elasped == wave2 && waveNo == "1")
 	{
 		waveNo = "2";
 	}
@@ -442,7 +444,7 @@ void SceneText::Update(double dt)
 		waveNo = "3";
 		currWaveEnemy = 0;
 	}
-	if (elasped == 150 && waveNo == "3 ")
+	if (elasped == wave4 && waveNo == "3 ")
 	{
 		waveNo = "4";
 		currWaveEnemy = 0;
@@ -478,6 +480,9 @@ void SceneText::Update(double dt)
 		waveNo = "4 ";
 	}
 	cout << waveNo << " " << currWaveEnemy << endl;
+
+	if (elasped >= survive)
+		waveNo = "WIN";
 
 	if (KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
@@ -587,7 +592,19 @@ void SceneText::Update(double dt)
 	else if (waveNo == "3" || waveNo == "3 ")
 	{
 		ss1.str("");
-		ss1 << "Wave 4 in: " << 150 - elasped << "s";
+		ss1 << "Wave 4 in: " << wave4 - elasped << "s";
+		textObj[10]->SetText(ss1.str());
+	}
+	else
+	{
+		ss1.str("");
+		ss1 << "Survive till " << survive - elasped;
+		textObj[10]->SetText(ss1.str());
+	}
+	if (waveNo == "WIN")
+	{
+		ss1.str("");
+		ss1 << "You have survived!";
 		textObj[10]->SetText(ss1.str());
 	}
 	/*ss1.str("");
