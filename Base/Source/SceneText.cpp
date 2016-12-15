@@ -211,7 +211,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("shotgunB")->textureID = LoadTGA("Image//shotgunbullet.tga");
 	
-	//MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
+	MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
 	//MeshBuilder::GetInstance()->GenerateOBJ("robothead", "Obj//RobotHead.obj");
 
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_FRONT", Color(1, 1, 1), 1.f);
@@ -284,17 +284,18 @@ void SceneText::Init()
 
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f)); 
 	anotherCube->SetCollider(true);
-	anotherCube->SetAABB(Vector3(10.f, 10.f, 10.f), Vector3(-10.f, -10.f, -10.f));
+	anotherCube->SetAABB(Vector3(13.f, 10.f, 13.f), Vector3(-13.f, -10.f, -13.f));
 	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
 	anotherCube->IsCamp("Camp");
 
-	//GenericEntity* bCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -10.0f));
-	//bCube->SetCollider(true);
-	//bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	//bCube->InitLOD("cubeSG", "lightball", "cubeSG");
-	//CSceneNode* node = theNode->AddChild(bCube);
-	////
+	GenericEntity* bCube = Create::Entity("m24r", Vector3(-40, 0.0f, -40.0f));
+	bCube->IsEnemy(false);
+	bCube->IsCamp("");
+	bCube->SetCollider(true);
+	bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
+	bCube->InitLOD("m24r", "lightball", "cubeSG");
+	//
 	//GenericEntity* baseCube = Create::Asset("cube", Vector3(0.0f, 0.0f, 0.0f));
 	//CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(baseCube);
 
@@ -334,7 +335,7 @@ void SceneText::Init()
 	playerInfo->SetTerrain(groundEntity);
 	for (int i = 0; i < 3; i++)
 	{
-		theEnemy= Create::Enemy(Vector3(Math::RandIntMinMax(-300, -300), 0.0f, Math::RandIntMinMax(-300, -300)),Vector3(Math::RandIntMinMax(-30, 30), 0.0f, Math::RandIntMinMax(-30, 30)), Math::RandFloatMinMax(5.f,7.f), groundEntity);
+		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-300, -300), 0.0f, Math::RandIntMinMax(-300, -300)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
 		theEnemy->SetNumOfFollowers(0);
 	}
 /*for (int i = 0; i < 10;)
@@ -356,7 +357,10 @@ void SceneText::Init()
 	{
 		textObj[i] = Create::Text2DObject("text", Vector3(-halfWindowWidth, -halfWindowHeight + fontSize*i + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f,1.0f,0.0f));
 	}
+	textObj[9] = Create::Text2DObject("text", Vector3(halfWindowWidth/10, halfWindowHeight/10, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
+	textObj[10] = Create::Text2DObject("text", Vector3(halfWindowWidth / 20, Application::GetInstance().GetWindowHeight()/5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[0]->SetText("HELLO WORLD");
+
 }
 
 void SceneText::Update(double dt)
@@ -386,11 +390,11 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
-	if (elasped == 50 && waveNo == "1")
+	if (elasped == wave2 && waveNo == "1")
 	{
 		waveNo = "2";
 	}
-	if (elasped == 100 && waveNo == "2.1")
+	if (elasped == wave3)
 	{
 		waveNo = "3";
 		currWaveEnemy = 0;
@@ -399,12 +403,10 @@ void SceneText::Update(double dt)
 	{
 		for (currWaveEnemy; currWaveEnemy < 3;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(-20, 10.f), groundEntity);
 			theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
-		if (currWaveEnemy > 1)
-			waveNo = "2.1";
 	}
 	if (waveNo == "3")
 	{
@@ -413,8 +415,6 @@ void SceneText::Update(double dt)
 			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
 			currWaveEnemy++;
 		}
-		if (currWaveEnemy > 1)
-			waveNo = "3.1";
 	}
 	if(KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
@@ -478,9 +478,8 @@ void SceneText::Update(double dt)
 	std::ostringstream ss;
 	ss.precision(5);
 	float fps = (float)(1.f / dt);
-	ss << "FPS: " << fps;
+	ss << "FPS: " << playerInfo->GetPos();
 	textObj[1]->SetText(ss.str());
-
 
 
 	std::ostringstream ss1;
@@ -506,6 +505,18 @@ void SceneText::Update(double dt)
 	ss1.str("");
 	ss1 << "Score: " << playerInfo->playerScore;
 	textObj[6]->SetText(ss1.str());
+
+	ss1.str("");
+	ss1 << "Wave: " << waveNo;
+	textObj[9]->SetText(ss1.str());
+
+	if (waveNo == "1")
+	{
+		ss1.str("");
+		ss1 << "Wave 2 in: " << wave2 - elasped << "s";
+		textObj[10]->SetText(ss1.str());
+	}
+
 	/*ss1.str("");
 	ss1 << "Enemies: " << theEnemy->GetEnemyCount();
 	textObj[5]->SetText(ss1.str());*/

@@ -35,13 +35,15 @@ private:
 	CPlayerInfo* playerInfo;
 	GroundEntity* groundEntity;
 	FPSCamera camera;
-	TextEntity* textObj[10];
+	TextEntity* textObj[13];
 	Light* lights[2];
 	GenericEntity* theCube[5];
 	unsigned t0;
 	string waveNo = "1";
 	int currWaveEnemy = 0;
 	unsigned  elasped = 0;
+	int wave2 = 70;
+	int wave3 = 110;
 	CEnemy* theEnemy;
 	static SceneText* sInstance; // The pointer to the object that gets registered
 };
