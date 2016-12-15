@@ -185,8 +185,26 @@ void SceneText::Init()
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
 	
-	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp", "Obj//robotspawncamp.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp")->textureID = LoadTGA("Image//robotspawncamp.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_high", "Obj//robotspawncamp1_high.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_high")->textureID = LoadTGA("Image//robotspawncamp1_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_mid", "Obj//robotspawncamp1_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_mid")->textureID = LoadTGA("Image//robotspawncamp1_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_low", "Obj//robotspawncamp1_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_low")->textureID = LoadTGA("Image//robotspawncamp1_low.tga");
+
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_high", "Obj//robotspawncamp2_high.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_high")->textureID = LoadTGA("Image//robotspawncamp2_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_mid", "Obj//robotspawncamp2_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_mid")->textureID = LoadTGA("Image//robotspawncamp2_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_low", "Obj//robotspawncamp2_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_low")->textureID = LoadTGA("Image//robotspawncamp2_low.tga");
+
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_high", "Obj//robotspawncamp3_high.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_high")->textureID = LoadTGA("Image//robotspawncamp3_high.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_mid", "Obj//robotspawncamp3_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_mid")->textureID = LoadTGA("Image//robotspawncamp3_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_low", "Obj//robotspawncamp3_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_low")->textureID = LoadTGA("Image//robotspawncamp3_low.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
 	MeshBuilder::GetInstance()->GetMesh("robot1_high")->textureID = LoadTGA("Image//ROBOT1_high.tga");
@@ -200,12 +218,12 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_low", "Obj//android_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_low.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
-	MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Dog_mid", "Obj//dog_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Dog_mid")->textureID = LoadTGA("Image//dog_mid.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Dog_low", "Obj//dog_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Dog_low")->textureID = LoadTGA("Image//dog_low.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
+	//MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Dog_mid", "Obj//dog_mid.obj");
+	//MeshBuilder::GetInstance()->GetMesh("Dog_mid")->textureID = LoadTGA("Image//dog_mid.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Dog_low", "Obj//dog_low.obj");
+	//MeshBuilder::GetInstance()->GetMesh("Dog_low")->textureID = LoadTGA("Image//dog_low.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("House_high", "Obj//house_high.obj"); //model 4
 	MeshBuilder::GetInstance()->GetMesh("House_high")->textureID = LoadTGA("Image//house_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("House_mid", "Obj//house_mid.obj");
@@ -258,10 +276,10 @@ void SceneText::Init()
 	robot->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
 	robot->InitLOD("robot1_high", "robot1_mid", "robot_low");
 
-	GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
+	/*GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
 	dog->SetCollider(true);
 	dog->SetAABB(Vector3(3.f, 3.f, 3.f), Vector3(-3.f, -3.f, -3.f));
-	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");
+	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");*/
 
 	GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
 	house->SetCollider(true);
@@ -295,9 +313,13 @@ void SceneText::Init()
 	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
 	//}
 
-	GenericEntity* RobotCamp = Create::Entity("Robot_camp", Vector3(-300.f, -5.f, -300.f), Vector3(5.f, 5.f, 5.f));
-	GenericEntity* RobotCamp2 = Create::Entity("Robot_camp", Vector3(225.f, -5.f, -200.f), Vector3(5.f, 5.f, 5.f));
-	GenericEntity* RobotCamp3 = Create::Entity("Robot_camp", Vector3(-33.5f, -5.f, -427.5f), Vector3(5.f, 5.f, 5.f));
+	//robot camps
+	GenericEntity* RobotCamp1 = Create::Entity("Robot_camp1_high", Vector3(-300.f, -5.f, -300.f), Vector3(5.f, 5.f, 5.f));
+	RobotCamp1->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+	GenericEntity* RobotCamp2 = Create::Entity("Robot_camp2_high", Vector3(225.f, -5.f, -200.f), Vector3(5.f, 5.f, 5.f));
+	RobotCamp2->InitLOD("Robot_camp2_high", "Robot_camp2_mid", "Robot_camp2_low");
+	GenericEntity* RobotCamp3 = Create::Entity("Robot_camp3_high", Vector3(-33.5f, -8.f, -427.5f), Vector3(5.f, 5.f, 5.f));
+	RobotCamp3->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
 
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f)); 
 	anotherCube->SetCollider(true);
