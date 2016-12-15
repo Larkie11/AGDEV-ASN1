@@ -223,12 +223,12 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_low", "Obj//android_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_low.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("House_high", "Obj//house_high.obj"); //model 4
-	MeshBuilder::GetInstance()->GetMesh("House_high")->textureID = LoadTGA("Image//house_high.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("House_mid", "Obj//house_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("House_mid")->textureID = LoadTGA("Image//house_mid.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("House_low", "Obj//house_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("House_low")->textureID = LoadTGA("Image//house_low.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("House_high", "Obj//house_high.obj"); //model 4
+	//MeshBuilder::GetInstance()->GetMesh("House_high")->textureID = LoadTGA("Image//house_high.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("House_mid", "Obj//house_mid.obj");
+	//MeshBuilder::GetInstance()->GetMesh("House_mid")->textureID = LoadTGA("Image//house_mid.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("House_low", "Obj//house_low.obj");
+	//MeshBuilder::GetInstance()->GetMesh("House_low")->textureID = LoadTGA("Image//house_low.tga");
 	/*
 	MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
 	MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
@@ -309,10 +309,10 @@ void SceneText::Init()
 	dog->SetAABB(Vector3(3.f, 3.f, 3.f), Vector3(-3.f, -3.f, -3.f));
 	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");*/
 
-	GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
-	house->SetCollider(true);
-	house->SetAABB(Vector3(5.f, 5.f, 5.f), Vector3(-5.f, -5.f, -5.f));
-	house->InitLOD("House_high", "House_mid", "House_low");
+	//GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
+	//house->SetCollider(true);
+	//house->SetAABB(Vector3(5.f, 5.f, 5.f), Vector3(-5.f, -5.f, -5.f));
+	//house->InitLOD("House_high", "House_mid", "House_low");
 
 	/*GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
 	tree->SetCollider(true);
@@ -614,7 +614,7 @@ void SceneText::Update(double dt)
 	if (waveNo == "1")
 	{
 		ss1.str("");
-		ss1 << "Wave 1 in: " << 20 - elasped << "s";
+		ss1 << "Wave 1 in: " << wave1 - elasped << "s";
 		textObj[10]->SetText(ss1.str());
 	}
 	else if (waveNo == "1 ")

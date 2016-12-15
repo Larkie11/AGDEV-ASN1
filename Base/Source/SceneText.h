@@ -45,9 +45,9 @@ private:
 	string waveNo = "1";
 	int currWaveEnemy = 0;
 	unsigned  elasped = 0;
-	int wave1 = 50;
-	int wave2 = 80;
-	int wave3 = 100;
+	int wave1 = 70;
+	int wave2 = 90;
+	int wave3 = 110;
 	int wave4 = 160;
 	int survive = 200;
 	CEnemy* theEnemy;
