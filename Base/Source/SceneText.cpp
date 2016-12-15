@@ -212,12 +212,12 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("House_mid")->textureID = LoadTGA("Image//house_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("House_low", "Obj//house_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("House_low")->textureID = LoadTGA("Image//house_low.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Tree_high", "Obj//tree_high.obj"); //model 5
-	MeshBuilder::GetInstance()->GetMesh("Tree_high")->textureID = LoadTGA("Image//tree_high.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Tree_mid", "Obj//tree_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Tree_low", "Obj//tree_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Tree_low")->textureID = LoadTGA("Image//tree_low.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_high", "Obj//tree_high.obj"); //model 5
+	//MeshBuilder::GetInstance()->GetMesh("Tree_high")->textureID = LoadTGA("Image//tree_high.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_mid", "Obj//tree_mid.obj");
+	//MeshBuilder::GetInstance()->GetMesh("Tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
+	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_low", "Obj//tree_low.obj");
+	//MeshBuilder::GetInstance()->GetMesh("Tree_low")->textureID = LoadTGA("Image//tree_low.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("pistolB", "Obj//pistolbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//pistolbullet.tga");
@@ -268,10 +268,10 @@ void SceneText::Init()
 	house->SetAABB(Vector3(5.f, 5.f, 5.f), Vector3(-5.f, -5.f, -5.f));
 	house->InitLOD("House_high", "House_mid", "House_low");
 
-	GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
+	/*GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
 	tree->SetCollider(true);
 	tree->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
-	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");
+	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");*/
 
 	//GenericEntity* aCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -20.0f));
 	//aCube->SetCollider(true);
@@ -411,7 +411,7 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
-	if (elasped == wave2 && waveNo == "1")
+	if (elasped == wave2 && waveNo != "2")
 	{
 		waveNo = "2";
 	}

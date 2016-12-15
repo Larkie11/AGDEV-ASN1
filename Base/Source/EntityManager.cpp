@@ -431,7 +431,7 @@ bool EntityManager::CheckForCollision(void)
 									{
 										thatEntity->SetIsDone(true);
 										thisEntity->SetIsDone(true);
-										//CPlayerInfo::GetInstance()->playerScore++;
+										CPlayerInfo::GetInstance()->playerScore++;
 									}
 									
 									if (CSceneGraph::GetInstance()->DeleteNode((*colliderThis)) == true)

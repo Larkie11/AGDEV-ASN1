@@ -1,13 +1,15 @@
-﻿Build started 15/12/2016 6:56:58 PM.
+﻿Build started 15/12/2016 9:33:29 PM.
      1>Project "C:\Users\WM\Documents\AGDEV-ASN1\Base\Base.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\WM\Documents\AGDEV-ASN1\/Common/Source" /I"C:\Users\WM\Documents\AGDEV-ASN1\/glfw/include" /I"C:\Users\WM\Documents\AGDEV-ASN1\\Base\irrKlang\include" /I"C:\Users\WM\Documents\AGDEV-ASN1\/glew/include" /ZI /nologo /W3 /WX- /Od /Oy- /D _VARIADIC_MAX=10 /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\SceneText.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\WM\Documents\AGDEV-ASN1\/Common/Source" /I"C:\Users\WM\Documents\AGDEV-ASN1\/glfw/include" /I"C:\Users\WM\Documents\AGDEV-ASN1\\Base\irrKlang\include" /I"C:\Users\WM\Documents\AGDEV-ASN1\/glew/include" /ZI /nologo /W3 /WX- /Od /Oy- /D _VARIADIC_MAX=10 /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\EntityManager.cpp Source\SceneText.cpp
          SceneText.cpp
-     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(344): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(368): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(419): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(429): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(439): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(357): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(381): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(433): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(443): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\wm\documents\agdev-asn1\base\source\scenetext.cpp(453): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         EntityManager.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\WM\Documents\AGDEV-ASN1\Debug\Base.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\WM\Documents\AGDEV-ASN1\Debug" /LIBPATH:"C:\Users\WM\Documents\AGDEV-ASN1\/glfw/lib-msvc100" /LIBPATH:"C:\Users\WM\Documents\AGDEV-ASN1\/glew/lib" Common.lib winmm.lib opengl32.lib glu32.lib glew32.lib glfw3.lib irrKlang.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\WM\Documents\AGDEV-ASN1\Debug\Base.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\WM\Documents\AGDEV-ASN1\Debug\Base.lib" /MACHINE:X86 Debug\Application.obj
          Debug\CEnemyController.obj
@@ -48,4 +50,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.64
+Time Elapsed 00:00:02.40
