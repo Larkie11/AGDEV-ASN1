@@ -3,6 +3,7 @@
 #include "MeshBuilder.h"
 #include "RenderHelper.h"
 #include "../GenericEntity.h"
+#include "../PlayerInfo/PlayerInfo.h"
 
 /********************************************************************************
 Constructor
@@ -96,6 +97,22 @@ void CGrid::Render(void)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		RenderHelper::RenderMesh(theMesh);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		//RenderHelper::RenderMesh(theMesh);				
+		Vector3 pos = CPlayerInfo::GetInstance()->GetPos();
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);				
+		if (min.x < pos.x && max.x > pos.x &&
+			min.z < pos.z && max.z > pos.z)
+		{
+			RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GREEN"));
+		}
+		else
+		{
+			//RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GREEN"));
+		}
+		//RenderHelper::RenderMesh(theMesh);
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 }
 

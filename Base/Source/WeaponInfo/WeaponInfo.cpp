@@ -147,7 +147,7 @@ void CWeaponInfo::Discharge(Vector3 position, Vector3 target, CPlayerInfo* _sour
 		// If there is still ammo in the magazine, then fire
 		if (magRounds > 0)
 		{
-			//if (_source->GetWeaponType() == CPlayerInfo::WT_PISTOL)
+			if (_source->GetWeaponType() == CPlayerInfo::WT_PISTOL)
 			{
 				sound.playSE("Music//Mining.mp3");
 

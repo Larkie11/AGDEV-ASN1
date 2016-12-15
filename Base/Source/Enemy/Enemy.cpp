@@ -132,7 +132,7 @@ void CEnemy::Update(double dt)
 	//enemyHand->SetPos(position - 10);
 	Constrain();	
 	distance = (position - target).LengthSquared();
-	ez->SetPos(Vector3(position.x, position.y - 7, position.z));
+	ez->SetPos(Vector3(position.x + 1, position.y - 8, position.z));
 
 	if (follow >= 1)
 	{
@@ -145,7 +145,7 @@ void CEnemy::Update(double dt)
 		ef->SetCollider(false);
 
 	}
-	ef->SetPos(position+10);
+	ef->SetPos(Vector3(position.x - 10, position.y - 4, position.z - 10));
 }
 void CEnemy::SetNumOfFollowers(int followers)
 {

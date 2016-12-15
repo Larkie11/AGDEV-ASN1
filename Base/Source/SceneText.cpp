@@ -26,6 +26,7 @@
 #include <iostream>
 using namespace std;
 
+
 SceneText* SceneText::sInstance = new SceneText(SceneManager::GetInstance());
 
 SceneText::SceneText()
@@ -150,10 +151,15 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
 	MeshBuilder::GetInstance()->GenerateOBJ("gun", "OBJ//gun.obj");
 	MeshBuilder::GetInstance()->GetMesh("gun")->textureID = LoadTGA("Image//gun.tga");
+	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH_GREEN", Color(0, 1, 0), 1.f);
 
 	//MeshBuilder::GetInstance()->GenerateRectangular("hand", Color(1.0f, 0.64f, 0.0f), 1.0f,5.0f,1.0f);
 	////LOD objs for assignment 1
 	MeshBuilder::GetInstance()->GenerateOBJ("m24r", "Obj//M24R.obj");
+	MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("mp5k", "Obj//MP5K.obj");
+	MeshBuilder::GetInstance()->GetMesh("mp5k")->textureID = LoadTGA("Image//MP5K.tga");
+
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_high", "Obj//Camp_high.obj");
 	MeshBuilder::GetInstance()->GetMesh("Camp_high")->textureID = LoadTGA("Image//wood_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_mid", "Obj//Camp_mid.obj");
@@ -178,6 +184,10 @@ void SceneText::Init()
 	//MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
+	
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp", "Obj//robotspawncamp.obj");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp")->textureID = LoadTGA("Image//robotspawncamp.tga");
+
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
 	MeshBuilder::GetInstance()->GetMesh("robot1_high")->textureID = LoadTGA("Image//ROBOT1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_mid", "Obj//robot1_mid.obj");
@@ -214,7 +224,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("shotgunB")->textureID = LoadTGA("Image//shotgunbullet.tga");
 	
-	MeshBuilder::GetInstance()->GetMesh("m24r")->textureID = LoadTGA("Image//M24R.tga");
+	
 	//MeshBuilder::GetInstance()->GenerateOBJ("robothead", "Obj//RobotHead.obj");
 
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_FRONT", Color(1, 1, 1), 1.f);
@@ -230,7 +240,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("SKYBOX_TOP")->textureID = LoadTGA("Image//SkyBox//skybox_top.tga");
 	MeshBuilder::GetInstance()->GetMesh("SKYBOX_BOTTOM")->textureID = LoadTGA("Image//SkyBox//skybox_bottom.tga");
 	MeshBuilder::GetInstance()->GenerateRay("laser", 10.0f);
-	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH", Color(1, 1, 1), 10.f);
+	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH", Color(1, 1, 1), 5.f);
 
 	// Set up the Spatial Partition and pass it to the EntityManager to manage
 	CSpatialPartition::GetInstance()->Init(100, 100, 10, 10);
@@ -243,25 +253,25 @@ void SceneText::Init()
 	Create::Entity("reference", Vector3(0.0f, 0.0f, 0.0f)); // Reference
 	Create::Entity("lightball", Vector3(lights[0]->position.x, lights[0]->position.y, lights[0]->position.z)); // Lightball
 
-	/*GenericEntity* android = Create::Entity("Android_high", Vector3(100.0f, 0.0f, -100.0f));
-	android->SetCollider(true);
-	android->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	android->InitLOD("Android_high", "Android_mid", "Android_low");*/
+	GenericEntity* robot = Create::Entity("robot1_high", Vector3(100.0f, 0.0f, -100.0f));
+	robot->SetCollider(true);
+	robot->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
+	robot->InitLOD("robot1_high", "robot1_mid", "robot_low");
 
-	/*GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
+	GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
 	dog->SetCollider(true);
-	dog->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");*/
+	dog->SetAABB(Vector3(3.f, 3.f, 3.f), Vector3(-3.f, -3.f, -3.f));
+	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");
 
-	/*GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
+	GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
 	house->SetCollider(true);
-	house->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	house->InitLOD("House_high", "House_mid", "House_low");*/
+	house->SetAABB(Vector3(5.f, 5.f, 5.f), Vector3(-5.f, -5.f, -5.f));
+	house->InitLOD("House_high", "House_mid", "House_low");
 
-	/*GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
+	GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
 	tree->SetCollider(true);
-	tree->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");*/
+	tree->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
+	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");
 
 	//GenericEntity* aCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -20.0f));
 	//aCube->SetCollider(true);
@@ -284,6 +294,10 @@ void SceneText::Init()
 	//{
 	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
 	//}
+
+	GenericEntity* RobotCamp = Create::Entity("Robot_camp", Vector3(-300.f, -5.f, -300.f), Vector3(5.f, 5.f, 5.f));
+	GenericEntity* RobotCamp2 = Create::Entity("Robot_camp", Vector3(225.f, -5.f, -200.f), Vector3(5.f, 5.f, 5.f));
+	GenericEntity* RobotCamp3 = Create::Entity("Robot_camp", Vector3(-33.5f, -5.f, -427.5f), Vector3(5.f, 5.f, 5.f));
 
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f)); 
 	anotherCube->SetCollider(true);
@@ -367,6 +381,7 @@ void SceneText::Init()
 	textObj[10] = Create::Text2DObject("text", Vector3(halfWindowWidth / 20, Application::GetInstance().GetWindowHeight()/5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[0]->SetText("HELLO WORLD");
 
+	sound.playMusic("Music//Background.mp3");
 }
 
 void SceneText::Update(double dt)
@@ -569,8 +584,15 @@ void SceneText::Render()
 	GraphicsManager::GetInstance()->SetPerspectiveProjection(45.0f, 4.0f / 3.0f, 0.1f, 10000.0f);
 	GraphicsManager::GetInstance()->AttachCamera(&camera);
 	EntityManager::GetInstance()->Render();
-	playerInfo->Render("m24r");
 
+	if (playerInfo->GetWeaponType() == CPlayerInfo::WT_PISTOL)
+	{
+		playerInfo->Render("m24r");
+	}
+	else if (playerInfo->GetWeaponType() == CPlayerInfo::WT_GUN)
+	{
+		playerInfo->Render("mp5k");
+	}
 	// Setup 2D pipeline then render 2D
 	int halfWindowWidth = Application::GetInstance().GetWindowWidth() / 2;
 	int halfWindowHeight = Application::GetInstance().GetWindowHeight() / 2;

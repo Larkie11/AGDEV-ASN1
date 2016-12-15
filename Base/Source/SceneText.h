@@ -11,7 +11,9 @@
 #include "GenericEntity.h"
 #include "SceneGraph/UpdateTransformation.h"
 #include "Enemy\Enemy.h"
+#include "Sound.h"
 #include <ctime>
+
 
 class ShaderProgram;
 class SceneManager;
@@ -30,7 +32,8 @@ public:
 
 private:
 	SceneText(SceneManager* _sceneMgr); // This is used to register to SceneManager
-
+	
+	Sound sound;
 	ShaderProgram* currProg;
 	CPlayerInfo* playerInfo;
 	GroundEntity* groundEntity;
