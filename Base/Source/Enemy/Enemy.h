@@ -33,6 +33,7 @@ protected:
 	//CEnemy* result;
 	EnemyFollower* ef;
 	EnemyFollower* ez;
+	EnemyFollower* ea;
 	int follow = 0;
 public:
 
@@ -67,7 +68,6 @@ public:
 	//Constrain position within borders
 	void Constrain(void);
 	void Render(void);
-	int enemyNumber = 0;
 };
 
 namespace Create

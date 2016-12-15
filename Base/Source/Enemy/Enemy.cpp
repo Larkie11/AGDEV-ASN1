@@ -32,6 +32,7 @@ CEnemy::CEnemy() : GenericEntity(NULL)
 	baseMtx= new CUpdateTransformation();
 	ef = new EnemyFollower();
 	ez = new EnemyFollower();
+	ea = new EnemyFollower();
 }
 
 CEnemy::~CEnemy()
@@ -65,8 +66,10 @@ void CEnemy::Init(void)
 	enemyNode = newNode->AddChild(this);
 	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Android_high", "Android_mid", "Android_low");
 	ez->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Body_high", "Body_mid", "Body_low");
+	ea->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "robot1_high", "robot1_mid", "robot1_mid");
 	ez->SetAABB(Vector3(5, 5, 5), Vector3(-5, -5, -5));
 	node = enemyNode->AddChild(ef);
+	node = enemyNode->AddChild(ez);
 }
 
 
@@ -134,7 +137,7 @@ void CEnemy::Update(double dt)
 	distance = (position - target).LengthSquared();
 	ez->SetPos(Vector3(position.x + 1, position.y - 8, position.z));
 
-	if (follow >= 1)
+	if (follow == 1)
 	{
 		ef->SetScale(Vector3(1, 1, 1));
 		ef->SetCollider(true);
@@ -143,9 +146,22 @@ void CEnemy::Update(double dt)
 	{
 		ef->SetScale(Vector3(0, 0, 0));
 		ef->SetCollider(false);
-
 	}
+
+	if (follow >= 2)
+	{
+		ea->SetScale(Vector3(1, 1, 1));
+		ea->SetCollider(true);
+	}
+	else
+	{
+		ea->SetScale(Vector3(0, 0, 0));
+		ea->SetCollider(false);
+	}
+
 	ef->SetPos(Vector3(position.x - 10, position.y - 4, position.z - 10));
+	ea->SetPos(Vector3(position.x + 10, position.y, position.z));
+
 }
 void CEnemy::SetNumOfFollowers(int followers)
 {

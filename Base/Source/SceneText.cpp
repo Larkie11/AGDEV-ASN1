@@ -132,8 +132,6 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateText("text", 16, 16);
 	MeshBuilder::GetInstance()->GetMesh("text")->textureID = LoadTGA("Image//calibri.tga");
 	MeshBuilder::GetInstance()->GetMesh("text")->material.kAmbient.Set(1, 0, 0);
-	MeshBuilder::GetInstance()->GenerateOBJ("Chair", "OBJ//chair.obj");
-	MeshBuilder::GetInstance()->GetMesh("Chair")->textureID = LoadTGA("Image//chair.tga");
 	MeshBuilder::GetInstance()->GenerateRing("ring", Color(1, 0, 1), 36, 1, 0.5f);
 	MeshBuilder::GetInstance()->GenerateSphere("lightball", Color(1, 1, 1), 18, 36, 1.f);
 	MeshBuilder::GetInstance()->GenerateSphere("sgbullet", Color(1, 0, 0), 18, 36, 0.2f);
@@ -153,7 +151,6 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("gun")->textureID = LoadTGA("Image//gun.tga");
 	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH_GREEN", Color(0, 1, 0), 1.f);
 
-
 	MeshBuilder::GetInstance()->GenerateOBJ("windmillstick", "OBJ//windmillstick.obj");
 	MeshBuilder::GetInstance()->GetMesh("windmillstick")->textureID = LoadTGA("Image//windmillstick.tga");
 	//MeshBuilder::GetInstance()->GenerateOBJ("windmillblade", "OBJ//windmillblade.obj");
@@ -165,14 +162,14 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("mp5k", "Obj//MP5K.obj");
 	MeshBuilder::GetInstance()->GetMesh("mp5k")->textureID = LoadTGA("Image//MP5K.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("Camp_high", "Obj//Camp_high.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Camp_high", "Obj//Camp_high.obj"); //LOD MODEL 1
 	MeshBuilder::GetInstance()->GetMesh("Camp_high")->textureID = LoadTGA("Image//wood_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_mid", "Obj//Camp_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("Camp_mid")->textureID = LoadTGA("Image//wood_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_low", "Obj//Camp_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Camp_low")->textureID = LoadTGA("Image//wood_low.tga");
 	
-	MeshBuilder::GetInstance()->GenerateOBJ("Head_high", "Obj//Head_high.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Head_high", "Obj//Head_high.obj"); //LOD MODEL 2 (Seperated into head and body for scene node)
 	MeshBuilder::GetInstance()->GetMesh("Head_high")->textureID = LoadTGA("Image//head_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Head_mid", "Obj//Head_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("Head_mid")->textureID = LoadTGA("Image//head_mid.tga");
@@ -190,68 +187,46 @@ void SceneText::Init()
 
 	//MeshBuilder::GetInstance()->GenerateOBJ("Hand", "Obj//Hand.obj");
 	
-	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_high", "Obj//robotspawncamp1_high.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_high", "Obj//robotspawncamp1_high.obj"); //LOD MODEL 3
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_high")->textureID = LoadTGA("Image//robotspawncamp1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_mid", "Obj//robotspawncamp1_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_mid")->textureID = LoadTGA("Image//robotspawncamp1_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_low", "Obj//robotspawncamp1_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_low")->textureID = LoadTGA("Image//robotspawncamp1_low.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_high", "Obj//robotspawncamp2_high.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_high", "Obj//robotspawncamp2_high.obj"); //LOD MODEL 4
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_high")->textureID = LoadTGA("Image//robotspawncamp2_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_mid", "Obj//robotspawncamp2_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_mid")->textureID = LoadTGA("Image//robotspawncamp2_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_low", "Obj//robotspawncamp2_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_low")->textureID = LoadTGA("Image//robotspawncamp2_low.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_high", "Obj//robotspawncamp3_high.obj");
+	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_high", "Obj//robotspawncamp3_high.obj"); //LOD MODEL 5
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_high")->textureID = LoadTGA("Image//robotspawncamp3_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_mid", "Obj//robotspawncamp3_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_mid")->textureID = LoadTGA("Image//robotspawncamp3_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_low", "Obj//robotspawncamp3_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_low")->textureID = LoadTGA("Image//robotspawncamp3_low.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //model 1
+	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //LOD MODEL 6
 	MeshBuilder::GetInstance()->GetMesh("robot1_high")->textureID = LoadTGA("Image//ROBOT1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_mid", "Obj//robot1_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("robot1_mid")->textureID = LoadTGA("Image//ROBOT1_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_low", "Obj//robot1_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("robot1_low")->textureID = LoadTGA("Image//ROBOT1_low.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Android_high", "Obj//android_high.obj"); //model 2
+
+	MeshBuilder::GetInstance()->GenerateOBJ("Android_high", "Obj//android_high.obj"); //LOD MODEL 7
 	MeshBuilder::GetInstance()->GetMesh("Android_high")->textureID = LoadTGA("Image//android_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_mid", "Obj//android_mid.obj");
 	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_mid.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_low", "Obj//android_low.obj");
 	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_low.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("House_high", "Obj//house_high.obj"); //model 4
-	//MeshBuilder::GetInstance()->GetMesh("House_high")->textureID = LoadTGA("Image//house_high.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("House_mid", "Obj//house_mid.obj");
-	//MeshBuilder::GetInstance()->GetMesh("House_mid")->textureID = LoadTGA("Image//house_mid.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("House_low", "Obj//house_low.obj");
-	//MeshBuilder::GetInstance()->GetMesh("House_low")->textureID = LoadTGA("Image//house_low.tga");
-	/*
-	MeshBuilder::GetInstance()->GenerateOBJ("Dog_high", "Obj//dog_high.obj"); //model 3
-	MeshBuilder::GetInstance()->GetMesh("Dog_high")->textureID = LoadTGA("Image//dog_high.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Dog_mid", "Obj//dog_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Dog_mid")->textureID = LoadTGA("Image//dog_mid.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("Dog_low", "Obj//dog_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Dog_low")->textureID = LoadTGA("Image//dog_low.tga");
-	
-	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_high", "Obj//tree_high.obj"); //model 5
-	//MeshBuilder::GetInstance()->GetMesh("Tree_high")->textureID = LoadTGA("Image//tree_high.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_mid", "Obj//tree_mid.obj");
-	//MeshBuilder::GetInstance()->GetMesh("Tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
-	//MeshBuilder::GetInstance()->GenerateOBJ("Tree_low", "Obj//tree_low.obj");
-	//MeshBuilder::GetInstance()->GetMesh("Tree_low")->textureID = LoadTGA("Image//tree_low.tga");
-	*/
+
 	MeshBuilder::GetInstance()->GenerateOBJ("pistolB", "Obj//pistolbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//pistolbullet.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("shotgunB")->textureID = LoadTGA("Image//shotgunbullet.tga");
 	
-	
-	//MeshBuilder::GetInstance()->GenerateOBJ("robothead", "Obj//RobotHead.obj");
-
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_FRONT", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_BACK", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_LEFT", Color(1, 1, 1), 1.f);
@@ -265,7 +240,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("SKYBOX_TOP")->textureID = LoadTGA("Image//SkyBox//skybox_top.tga");
 	MeshBuilder::GetInstance()->GetMesh("SKYBOX_BOTTOM")->textureID = LoadTGA("Image//SkyBox//skybox_bottom.tga");
 	MeshBuilder::GetInstance()->GenerateRay("laser", 10.0f);
-	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH", Color(1, 1, 1), 5.f);
+	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH", Color(1, 1, 1), 0.f);
 
 	// Set up the Spatial Partition and pass it to the EntityManager to manage
 	CSpatialPartition::GetInstance()->Init(100, 100, 10, 10);
@@ -275,100 +250,45 @@ void SceneText::Init()
 	EntityManager::GetInstance()->SetSpatialPartition(CSpatialPartition::GetInstance());
 
 	// Create entities into the scene
-	Create::Entity("reference", Vector3(0.0f, 0.0f, 0.0f)); // Reference
+	//Create::Entity("reference", Vector3(0.0f, 0.0f, 0.0f)); // Reference
 	Create::Entity("lightball", Vector3(lights[0]->position.x, lights[0]->position.y, lights[0]->position.z)); // Lightball
 
-
-	GenericEntity* stick = Create::Asset("windmillstick", Vector3(0.0f, 0.0f, 0.0f));
+	GenericEntity* stick = Create::Asset("windmillstick", Vector3(0.0f, -5.0f, 0.0f));
 	CSceneNode* stickNode = CSceneGraph::GetInstance()->AddNode(stick);
-
-	//animation
-	/*CUpdateTransformation* stickMtx = new CUpdateTransformation();
-	stickMtx->ApplyUpdate(0.0f, 0.0f, 1.0f);
-	stickMtx->SetSteps(-5, 5);
-	stickNode->SetUpdateTransformation(stickMtx);*/
-
-	//blade
-	//GenericEntity* blade = Create::Asset("windmillblade", Vector3(0.0f, 0.0f, 0.0f));
-	//CSceneNode* bladeNode = stickNode->AddChild(blade);
-	//bladeNode->ApplyTranslate(0.0f, 0.0f, 1.0f);
-
-	////animation
-	//CUpdateTransformation* bladeMtx = new CUpdateTransformation();
-	//bladeMtx->ApplyUpdate(45.0f, 1.0f, 0.0f, 0.0f);
-	//bladeMtx->SetSteps(-500, 500);
-	//bladeNode->SetUpdateTransformation(bladeMtx);
 
 	GenericEntity* robot = Create::Entity("robot1_high", Vector3(100.0f, 0.0f, -100.0f));
 	robot->SetCollider(true);
 	robot->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
 	robot->InitLOD("robot1_high", "robot1_mid", "robot_low");
-	/*
-	GenericEntity* dog = Create::Entity("Dog_high", Vector3(-100.0f, 0.0f, 100.0f));
-	dog->SetCollider(true);
-	dog->SetAABB(Vector3(3.f, 3.f, 3.f), Vector3(-3.f, -3.f, -3.f));
-	dog->InitLOD("Dog_high", "Dog_mid", "Dog_low");*/
-
-	//GenericEntity* house = Create::Entity("House_high", Vector3(-300.0f, -5.0f, 0.0f));
-	//house->SetCollider(true);
-	//house->SetAABB(Vector3(5.f, 5.f, 5.f), Vector3(-5.f, -5.f, -5.f));
-	//house->InitLOD("House_high", "House_mid", "House_low");
-
-	/*GenericEntity* tree = Create::Entity("Tree_high", Vector3(400.0f, -5.0f, 0.0f));
-	tree->SetCollider(true);
-	tree->SetAABB(Vector3(1.f, 1.f, 1.f), Vector3(-1.f, -1.f, -1.f));
-	tree->InitLOD("Tree_high", "Tree_mid", "Tree_low");*/
-
-	//GenericEntity* aCube = Create::Entity("cube", Vector3(-20.0f, 0.0f, -20.0f));
-	//aCube->SetCollider(true);
-	//aCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	//aCube->InitLOD("cube", "lightball", "cubeSG");
-
-	//// Add the pointer to this new entity to the Scene Graph
-	//CSceneNode* theNode = CSceneGraph::GetInstance()->AddNode(aCube);
-	//if (theNode == NULL)
-	//{
-	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
-	//}
-
-	//GenericEntity* anotherCube = Create::Entity("cube", Vector3(-20.0f, 1.1f, -20.0f));
-	//anotherCube->SetCollider(true);
-	//anotherCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	//anotherCube->InitLOD("cube", "lightball", "lightball");
-	//CSceneNode* anotherNode = theNode->AddChild(anotherCube);
-	//if (anotherNode == NULL)
-	//{
-	//	cout << "EntityManager::AddEntity: Unable to add to scene graph!" << endl;
-	//}
 
 	//robot camps
 	GenericEntity* RobotCamp1 = Create::Entity("Robot_camp1_high", Vector3(-300.f, -5.f, -300.f), Vector3(5.f, 5.f, 5.f));
 	RobotCamp1->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
 	GenericEntity* RobotCamp2 = Create::Entity("Robot_camp2_high", Vector3(225.f, -5.f, -200.f), Vector3(5.f, 5.f, 5.f));
 	RobotCamp2->InitLOD("Robot_camp2_high", "Robot_camp2_mid", "Robot_camp2_low");
-	GenericEntity* RobotCamp3 = Create::Entity("Robot_camp3_high", Vector3(-33.5f, -8.f, -427.5f), Vector3(5.f, 5.f, 5.f));
+	GenericEntity* RobotCamp3 = Create::Entity("Robot_camp3_high", Vector3(-33.5f, -8.f, -400.5f), Vector3(5.f, 5.f, 5.f));
 	RobotCamp3->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
 
-	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f)); 
+	GenericEntity* RobotCampC = Create::Entity("Robot_camp1_high", Vector3(-150.f, -5.f, 300.f), Vector3(5.4f, 5.4f, 5.4f));
+	RobotCampC->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+	GenericEntity* RobotCampD = Create::Entity("Robot_camp1_high", Vector3(-33.5f, -9.f, 300.f), Vector3(7.f, 7.f, 7.f));
+	RobotCampD->InitLOD("Robot_camp2_high", "Robot_camp2_high", "Robot_camp2_high");
+	GenericEntity* RobotCampE = Create::Entity("Robot_camp1_high", Vector3(70.f, -5.f, 300.f), Vector3(5.4f, 5.4f, 5.4f));
+	RobotCampE->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+	GenericEntity* RobotCampF = Create::Entity("Robot_camp1_high", Vector3(-80.f, -5.f, 300.f), Vector3(5.4f, 5.4f, 5.4f));
+	RobotCampF->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+	GenericEntity* RobotCampG = Create::Entity("Robot_camp1_high", Vector3(200.f, -15.f, 300.f), Vector3(7.4f, 7.4f, 7.4f));
+	RobotCampG->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
+
+	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
 	anotherCube->SetAABB(Vector3(13.f, 10.f, 13.f), Vector3(-13.f, -10.f, -13.f));
 	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
 	anotherCube->IsCamp("Camp");
 
-	GenericEntity* bCube = Create::Entity("m24r", Vector3(-40, 0.0f, -40.0f));
-	bCube->IsEnemy(false);
-	bCube->IsCamp("");
-	bCube->SetCollider(true);
-	bCube->SetAABB(Vector3(0.5f, 0.5f, 0.5f), Vector3(-0.5f, -0.5f, -0.5f));
-	bCube->InitLOD("m24r", "lightball", "cubeSG");
-	//CSceneNode* baseNode = CSceneGraph::GetInstance()->AddNode(playerInfo);
-	//CSceneNode* childNode = baseNode->AddChild(bCube);
-	//
 	GenericEntity* windmill = Create::Asset("windmillstick", Vector3(0.0f, 5.0f, 0.0f), Vector3(1.0, 0.5f, 1.0f));
 	CSceneNode* windmillNode = CSceneGraph::GetInstance()->AddNode(windmill);
-
-	//baseCube->InitLOD("cubeSG", "lightball", "lightball");
 
 	CUpdateTransformation* baseMtx = new CUpdateTransformation();
 	baseMtx->ApplyUpdate(100.0f, 0.0f, 0.0f, 1.0f);
@@ -378,19 +298,8 @@ void SceneText::Init()
 	GenericEntity* childwindmill = Create::Asset("windmillstick", Vector3(0.0f, 0.0f, 0.0f));
 	CSceneNode* childNode = windmillNode->AddChild(childwindmill);
 	childNode->ApplyTranslate(0.0f, 1.0f, 0.0f);
-	//childCube->InitLOD("cubeSG", "lightball", "cube");
-
-	//GenericEntity* grandchildCube = Create::Asset("cubeSG", Vector3(0.0f, 0.0f, 0.0f));
-	//CSceneNode* grandchildNode = childNode->AddChild(grandchildCube);
-	//grandchildNode->ApplyTranslate(0.0f, 0.0f, 1.0f);
-	//CUpdateTransformation* aRotateMtx = new CUpdateTransformation();
-	//aRotateMtx->ApplyUpdate(1.0f, 0.0f, 0.0f, 1.0f);
-	//aRotateMtx->SetSteps(-120, 60);
-	//grandchildNode->SetUpdateTransformation(aRotateMtx);
-	//grandchildCube->InitLOD("cubeSG", "lightball", "cubeSG");
 
 	groundEntity = Create::Ground("GROUND", "GROUND");
-//	Create::Text3DObject("text", Vector3(0.0f, 0.0f, 0.0f), "DM2210", Vector3(10.0f, 10.0f, 10.0f), Color(0, 1, 1));
 	Create::Sprite2DObject("crosshair", Vector3(0.0f, 0.0f, 0.0f), Vector3(10.0f, 10.0f, 10.0f));
 
 	SkyBoxEntity* theSkyBox = Create::SkyBox("SKYBOX_FRONT", "SKYBOX_BACK",
@@ -418,11 +327,15 @@ void SceneText::Init()
 	float fontSize = 25.0f;
 	float halfFontSize = fontSize / 2.0f;
 
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		textObj[i] = Create::Text2DObject("text", Vector3(-halfWindowWidth, -halfWindowHeight + fontSize*i + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f,1.0f,0.0f));
 	}
-	textObj[9] = Create::Text2DObject("text", Vector3(halfWindowWidth/10, halfWindowHeight/10, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
+	for (int j = 5; j < 9; ++j)
+	{
+		textObj[j] = Create::Text2DObject("text", Vector3(-halfWindowWidth+600, -halfWindowHeight + fontSize*(j-5) + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f, 1.0f, 0.0f));
+	}
+	textObj[9] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 140, Application::GetInstance().GetWindowHeight() / 3.5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[10] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 100, Application::GetInstance().GetWindowHeight() / 3, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[0]->SetText("HELLO WORLD");
 
@@ -494,9 +407,9 @@ void SceneText::Update(double dt)
 	}
 	if (waveNo == "3")
 	{
-		for (currWaveEnemy; currWaveEnemy < 5;)
+		for (currWaveEnemy; currWaveEnemy < 6;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
 			//theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
@@ -504,9 +417,13 @@ void SceneText::Update(double dt)
 	}
 	if (waveNo == "4")
 	{
-		for (currWaveEnemy; currWaveEnemy < 6;)
+		for (currWaveEnemy; currWaveEnemy < 2;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(2.f, 8.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, -240), 0.0f, Math::RandIntMinMax(-250, -240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
+			theEnemy->SetNumOfFollowers(1);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
+			theEnemy->SetNumOfFollowers(2);
 			currWaveEnemy++;
 		}
 		waveNo = "4 ";
@@ -579,7 +496,7 @@ void SceneText::Update(double dt)
 	std::ostringstream ss;
 	ss.precision(5);
 	float fps = (float)(1.f / dt);
-	ss << "FPS: " << playerInfo->GetPos();
+	ss << "POS: " << playerInfo->GetPos();
 	textObj[1]->SetText(ss.str());
 
 
@@ -592,10 +509,6 @@ void SceneText::Update(double dt)
 	textObj[2]->SetText(ss1.str());
 
 	ss1.str("");
-	ss1 << "Ammo: " << playerInfo->GetMagRound();
-	textObj[3]->SetText(ss1.str());
-
-	ss1.str("");
 	ss1 << "Player Health: " << playerInfo->playerHealth;
 	textObj[4]->SetText(ss1.str());
 
@@ -604,8 +517,12 @@ void SceneText::Update(double dt)
 	textObj[5]->SetText(ss1.str());
 
 	ss1.str("");
-	ss1 << "Score: " << playerInfo->playerScore;
+	ss1 << "Ammo: " << playerInfo->GetMagRound();
 	textObj[6]->SetText(ss1.str());
+
+	ss1.str("");
+	ss1 << "Score: " << playerInfo->playerScore;
+	textObj[3]->SetText(ss1.str());
 
 	ss1.str("");
 	ss1 << "Wave: " << waveNo;
@@ -638,7 +555,7 @@ void SceneText::Update(double dt)
 	else
 	{
 		ss1.str("");
-		ss1 << "Survive till " << survive - elasped;
+		ss1 << "Survive for " << survive - elasped << "s";
 		textObj[10]->SetText(ss1.str());
 	}
 	if (waveNo == "WIN")

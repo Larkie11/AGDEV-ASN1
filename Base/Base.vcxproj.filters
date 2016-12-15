@@ -123,9 +123,6 @@
     <ClCompile Include="Source\Enemy\Enemy.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy\CEnemyController.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Source\WeaponInfo\Shotgun.cpp">
       <Filter>WeaponInfo</Filter>
     </ClCompile>
@@ -216,9 +213,6 @@
       <Filter>LevelOfDetails</Filter>
     </ClInclude>
     <ClInclude Include="Source\Enemy\Enemy.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Enemy\CEnemyController.h">
       <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\WeaponInfo\Shotgun.h">

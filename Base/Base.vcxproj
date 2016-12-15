@@ -12,7 +12,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application.cpp" />
-    <ClCompile Include="Source\Enemy\CEnemyController.cpp" />
     <ClCompile Include="Source\Enemy\Enemy.cpp" />
     <ClCompile Include="Source\Enemy\EnemyFollower.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
@@ -46,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Application.h" />
-    <ClInclude Include="Source\Enemy\CEnemyController.h" />
     <ClInclude Include="Source\Enemy\Enemy.h" />
     <ClInclude Include="Source\Enemy\EnemyFollower.h" />
     <ClInclude Include="Source\EntityManager.h" />
