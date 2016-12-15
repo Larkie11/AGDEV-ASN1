@@ -376,12 +376,7 @@ void SceneText::Init()
 	groundEntity->SetScale(Vector3(100.0f, 100.0f, 100.0f));
 	groundEntity->SetGrids(Vector3(10.0f, 1.0f, 10.0f));
 	playerInfo->SetTerrain(groundEntity);
-	for (int i = 0; i < 3; i++)
-	{
-		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-300, -300), 0.0f, Math::RandIntMinMax(-300, -300)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
-		theEnemy->SetNumOfFollowers(0);
-		theEnemy->enemyNumber++;
-	}
+	
 /*for (int i = 0; i < 10;)
 	{
 		theEnemy = new CEnemy();
@@ -402,7 +397,7 @@ void SceneText::Init()
 		textObj[i] = Create::Text2DObject("text", Vector3(-halfWindowWidth, -halfWindowHeight + fontSize*i + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f,1.0f,0.0f));
 	}
 	textObj[9] = Create::Text2DObject("text", Vector3(halfWindowWidth/10, halfWindowHeight/10, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
-	textObj[10] = Create::Text2DObject("text", Vector3(halfWindowWidth / 20, Application::GetInstance().GetWindowHeight()/5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
+	textObj[10] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 100, Application::GetInstance().GetWindowHeight() / 3, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[0]->SetText("HELLO WORLD");
 
 	sound.playMusic("Music//Background.mp3");
@@ -412,6 +407,7 @@ void SceneText::Update(double dt)
 {
 	// Update our entities
 	EntityManager::GetInstance()->Update(dt);
+
 	elasped = (clock() - t0) / CLOCKS_PER_SEC;
 	// THIS WHOLE CHUNK TILL <THERE> CAN REMOVE INTO ENTITIES LOGIC! Or maybe into a scene function to keep the update clean
 	if (KeyboardController::GetInstance()->IsKeyDown('1'))
@@ -435,7 +431,17 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
-	if (elasped == wave2 && waveNo == "1")
+	if (elasped == 40 && waveNo == "1")
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, -240), 0.0f, Math::RandIntMinMax(-250, -240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
+			theEnemy->SetNumOfFollowers(0);
+		}
+		waveNo = "1 ";
+	}
+
+	if (elasped == wave2 && waveNo == "1 ")
 	{
 		waveNo = "2";
 	}
@@ -483,6 +489,7 @@ void SceneText::Update(double dt)
 
 	if (elasped >= survive)
 		waveNo = "WIN";
+
 
 	if (KeyboardController::GetInstance()->IsKeyDown('I'))
 		lights[0]->position.z -= (float)(10.f * dt);
@@ -578,6 +585,12 @@ void SceneText::Update(double dt)
 	textObj[9]->SetText(ss1.str());
 
 	if (waveNo == "1")
+	{
+		ss1.str("");
+		ss1 << "Wave 1 in: " << 40 - elasped << "s";
+		textObj[10]->SetText(ss1.str());
+	}
+	else if (waveNo == "1 ")
 	{
 		ss1.str("");
 		ss1 << "Wave 2 in: " << wave2 - elasped << "s";
