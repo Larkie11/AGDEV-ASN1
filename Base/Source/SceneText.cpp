@@ -431,7 +431,7 @@ void SceneText::Update(double dt)
 	{
 		lights[0]->type = Light::LIGHT_SPOT;
 	}
-	if (elasped == 40 && waveNo == "1")
+	if (elasped == wave1 && waveNo == "1")
 	{
 		for (int i = 0; i < 3; i++)
 		{

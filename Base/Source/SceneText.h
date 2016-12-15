@@ -45,6 +45,7 @@ private:
 	string waveNo = "1";
 	int currWaveEnemy = 0;
 	unsigned  elasped = 0;
+	int wave1 = 50;
 	int wave2 = 80;
 	int wave3 = 100;
 	int wave4 = 160;
