@@ -440,7 +440,7 @@ void SceneText::Update(double dt)
 	{
 		for (currWaveEnemy; currWaveEnemy < 3;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-25, 2), 0.0f, Math::RandIntMinMax(10, 0)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
 			theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
@@ -450,7 +450,7 @@ void SceneText::Update(double dt)
 	{
 		for (currWaveEnemy; currWaveEnemy < 6;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-25, 2), 0.0f, Math::RandIntMinMax(10, 0)), Math::RandFloatMinMax(5.f, 15.f), groundEntity);
 			//theEnemy->SetNumOfFollowers(1);
 			currWaveEnemy++;
 		}
@@ -460,10 +460,10 @@ void SceneText::Update(double dt)
 	{
 		for (currWaveEnemy; currWaveEnemy < 2;)
 		{
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-50, 50)), Math::RandFloatMinMax(2.f, 8.f), groundEntity);
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, -240), 0.0f, Math::RandIntMinMax(-250, -240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-32, -35), 0.0f, Math::RandIntMinMax(-455, -400)), Vector3(Math::RandIntMinMax(-25, 2), 0.0f, Math::RandIntMinMax(10, 0)), Math::RandFloatMinMax(2.f, 8.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, -240), 0.0f, Math::RandIntMinMax(-250, -240)), Vector3(Math::RandIntMinMax(-10, 0), 0.0f, Math::RandIntMinMax(10, 0)), Math::RandFloatMinMax(5.f, 7.f), groundEntity);
 			theEnemy->SetNumOfFollowers(1);
-			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-50, 50), 0.0f, Math::RandIntMinMax(-20, 10)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
+			theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(250, 200), 0.0f, Math::RandIntMinMax(-200, -200)), Vector3(Math::RandIntMinMax(-20, 2), 0.0f, Math::RandIntMinMax(10, 0)), Math::RandFloatMinMax(4.f, 10.f), groundEntity);
 			theEnemy->SetNumOfFollowers(2);
 			currWaveEnemy++;
 		}

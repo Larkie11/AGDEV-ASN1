@@ -419,7 +419,7 @@ bool EntityManager::CheckForCollision(void)
 									{
 										sound.playSE("Music//Robot.mp3");
 										thatEntity->SetIsDone(true);
-										if (CPlayerInfo::GetInstance()->playerHealth >= 0)
+										if (CPlayerInfo::GetInstance()->playerHealth > 0)
 										{
 											CPlayerInfo::GetInstance()->playerHealth -= 10;
 										}
@@ -428,7 +428,7 @@ bool EntityManager::CheckForCollision(void)
 									{
 										sound.playSE("Music//Robot.mp3");
 										thisEntity->SetIsDone(true);
-										if (CPlayerInfo::GetInstance()->playerHealth >= 0)
+										if (CPlayerInfo::GetInstance()->playerHealth > 0)
 										{
 											CPlayerInfo::GetInstance()->playerHealth -= 10;
 										}
