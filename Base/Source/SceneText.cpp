@@ -312,7 +312,7 @@ void SceneText::Init()
 	}
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
-	anotherCube->SetAABB(Vector3(23.f, 10.f, 20.f), Vector3(-23.f, -10.f, -20.f));
+	anotherCube->SetAABB(Vector3(30.f, 10.f, 20.f), Vector3(-30.f, -10.f, -20.f));
 	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
 	anotherCube->IsCamp("Camp");
