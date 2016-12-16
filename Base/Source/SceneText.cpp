@@ -226,6 +226,11 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//pistolbullet.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("shotgunB")->textureID = LoadTGA("Image//shotgunbullet.tga");
+
+	MeshBuilder::GetInstance()->GenerateOBJ("tree_mid", "Obj//tree_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("tree_low", "Obj//tree_low.obj");
+	MeshBuilder::GetInstance()->GetMesh("tree_low")->textureID = LoadTGA("Image//tree_low.tga");
 	
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_FRONT", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_BACK", Color(1, 1, 1), 1.f);
@@ -272,13 +277,33 @@ void SceneText::Init()
 	GenericEntity* RobotCampC = Create::Entity("Robot_camp1_high", Vector3(-150.f, -5.f, 300.f), Vector3(5.4f, 5.4f, 5.4f));
 	RobotCampC->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
 	GenericEntity* RobotCampD = Create::Entity("Robot_camp1_high", Vector3(-33.5f, -9.f, 300.f), Vector3(7.f, 7.f, 7.f));
-	RobotCampD->InitLOD("Robot_camp2_high", "Robot_camp2_high", "Robot_camp2_high");
+	RobotCampD->InitLOD("Robot_camp1_high", "Robot_camp1_high", "Robot_camp1_high");
 	GenericEntity* RobotCampE = Create::Entity("Robot_camp1_high", Vector3(70.f, -5.f, 300.f), Vector3(5.4f, 5.4f, 5.4f));
 	RobotCampE->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
 	GenericEntity* RobotCampF = Create::Entity("Robot_camp1_high", Vector3(-80.f, -5.f, 300.f), Vector3(5.4f, 5.4f, 5.4f));
 	RobotCampF->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
-	GenericEntity* RobotCampG = Create::Entity("Robot_camp1_high", Vector3(200.f, -15.f, 300.f), Vector3(7.4f, 7.4f, 7.4f));
+	GenericEntity* RobotCampG = Create::Entity("Robot_camp3_high", Vector3(200.f, -15.f, 300.f), Vector3(7.4f, 7.4f, 7.4f));
 	RobotCampG->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
+	GenericEntity* RobotCampH = Create::Entity("Robot_camp3_high", Vector3(200.f, -15.f, -300.f), Vector3(7.4f, 7.4f, 7.4f));
+	RobotCampH->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
+	GenericEntity* RobotCampI = Create::Entity("Robot_camp3_high", Vector3(-200.f, -5.f, -10.f), Vector3(3.f, 3.f, 3.f));
+	RobotCampI->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
+	GenericEntity* RobotCampJ = Create::Entity("Robot_camp2_high", Vector3(-200.f, -5.f, -50.f), Vector3(3.f, 3.f, 3.f));
+	RobotCampJ->InitLOD("Robot_camp2_high", "Robot_camp2_mid", "Robot_camp2_low");
+	GenericEntity* RobotCampK = Create::Entity("Robot_camp2_high", Vector3(-200.f, -5.f, 100.f), Vector3(3.f, 3.f, 3.f));
+	RobotCampK->InitLOD("Robot_camp2_high", "Robot_camp2_mid", "Robot_camp2_low");
+	GenericEntity* RobotCampL = Create::Entity("Robot_camp1_high", Vector3(200.f, -5.f, 28.f), Vector3(5.f, 5.f, 5.f));
+	RobotCampL->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+	GenericEntity* RobotCampM = Create::Entity("Robot_camp1_high", Vector3(200.f, -5.f, -350.f), Vector3(3.f, 3.f, 3.f));
+	RobotCampM->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+	GenericEntity* RobotCampN = Create::Entity("Robot_camp1_high", Vector3(-159.f, -5.f, -200.f), Vector3(3.f, 3.f, 3.f));
+	RobotCampN->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
+
+	GenericEntity* tree1 = Create::Entity("tree_mid", Vector3(-300.f, 0.f, -200.f), Vector3(3.f, 3.f, 3.f));
+	GenericEntity* tree2 = Create::Entity("tree_mid", Vector3(300.f, 0.f, 250.f), Vector3(3.f, 3.f, 3.f));
+	GenericEntity* tree3 = Create::Entity("tree_mid", Vector3(-150.f, 0.f, 20.f), Vector3(3.f, 3.f, 3.f));
+	GenericEntity* tree4 = Create::Entity("tree_mid", Vector3(-250.f, 0.f, -50.f), Vector3(3.f, 3.f, 3.f));
+	//tree1->InitLOD("tree_mid", "tree_mid", "tree_low");
 
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
