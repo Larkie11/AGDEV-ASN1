@@ -140,10 +140,6 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateCube("cube", Color(1.0f, 1.0f, 0.0f), 1.0f);
 	MeshBuilder::GetInstance()->GetMesh("cone")->material.kDiffuse.Set(0.99f, 0.99f, 0.99f);
 	MeshBuilder::GetInstance()->GetMesh("cone")->material.kSpecular.Set(0.f, 0.f, 0.f);
-	MeshBuilder::GetInstance()->GenerateQuad("GRASS_DARKGREEN", Color(1, 1, 1), 1.f);
-	MeshBuilder::GetInstance()->GetMesh("GRASS_DARKGREEN")->textureID = LoadTGA("Image//grass_darkgreen.tga");
-	MeshBuilder::GetInstance()->GenerateQuad("GEO_GRASS_LIGHTGREEN", Color(1, 1, 1), 1.f);
-	MeshBuilder::GetInstance()->GetMesh("GEO_GRASS_LIGHTGREEN")->textureID = LoadTGA("Image//grass_lightgreen.tga");
 	MeshBuilder::GetInstance()->GenerateQuad("GROUND", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GetMesh("GROUND")->textureID = LoadTGA("Image//ground.tga");
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
@@ -267,7 +263,7 @@ void SceneText::Init()
 	robot->InitLOD("robot1_high", "robot1_mid", "robot_low");
 
 	//robot camps
-	GenericEntity* RobotCamp1 = Create::Entity("Robot_camp1_high", Vector3(-300.f, -5.f, -300.f), Vector3(5.f, 5.f, 5.f));
+	GenericEntity* RobotCamp1 = Create::Entity("Robot_camp1_high", Vector3(-300.f, -10.f, -330.f), Vector3(5.f, 5.f, 5.f));
 	RobotCamp1->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
 	GenericEntity* RobotCamp2 = Create::Entity("Robot_camp2_high", Vector3(225.f, -5.f, -200.f), Vector3(5.f, 5.f, 5.f));
 	RobotCamp2->InitLOD("Robot_camp2_high", "Robot_camp2_mid", "Robot_camp2_low");
@@ -286,7 +282,7 @@ void SceneText::Init()
 	RobotCampG->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
 	GenericEntity* RobotCampH = Create::Entity("Robot_camp3_high", Vector3(200.f, -15.f, -300.f), Vector3(7.4f, 7.4f, 7.4f));
 	RobotCampH->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
-	GenericEntity* RobotCampI = Create::Entity("Robot_camp3_high", Vector3(-200.f, -5.f, -10.f), Vector3(3.f, 3.f, 3.f));
+	GenericEntity* RobotCampI = Create::Entity("Robot_camp3_high", Vector3(-200.f, -8.f, -10.f), Vector3(3.f, 3.f, 3.f));
 	RobotCampI->InitLOD("Robot_camp3_high", "Robot_camp3_mid", "Robot_camp3_low");
 	GenericEntity* RobotCampJ = Create::Entity("Robot_camp2_high", Vector3(-200.f, -5.f, -50.f), Vector3(3.f, 3.f, 3.f));
 	RobotCampJ->InitLOD("Robot_camp2_high", "Robot_camp2_mid", "Robot_camp2_low");
@@ -312,7 +308,7 @@ void SceneText::Init()
 	}
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
-	anotherCube->SetAABB(Vector3(30.f, 10.f, 20.f), Vector3(-30.f, -10.f, -20.f));
+	anotherCube->SetAABB(Vector3(23.f, 10.f, 20.f), Vector3(-23.f, -10.f, -20.f));
 	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
 	anotherCube->IsCamp("Camp");
@@ -377,8 +373,9 @@ void SceneText::Init()
 	{
 		textObj[j] = Create::Text2DObject("text", Vector3(-halfWindowWidth+600, -halfWindowHeight + fontSize*(j-5) + halfFontSize, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(0.0f, 1.0f, 0.0f));
 	}
+	textObj[8] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 80, Application::GetInstance().GetWindowHeight() / 2.5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[9] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 140, Application::GetInstance().GetWindowHeight() / 3.5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
-	textObj[10] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 100, Application::GetInstance().GetWindowHeight() / 3, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
+	textObj[10] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 140, Application::GetInstance().GetWindowHeight() / 3, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 
 	sound.playMusic("Music//Background.mp3");
 }
@@ -469,7 +466,6 @@ void SceneText::Update(double dt)
 		}
 		waveNo = "4 ";
 	}
-	cout << waveNo << " " << currWaveEnemy << endl;
 
 	if (elasped >= survive)
 		waveNo = "WIN";
@@ -537,29 +533,22 @@ void SceneText::Update(double dt)
 	std::ostringstream ss;
 	ss.precision(5);
 	float fps = (float)(1.f / dt);
-	ss << "POS: " << fps;
+	ss << "FPS: " << fps;
 	textObj[0]->SetText(ss.str());
 
 	ss.str("");
-	ss << "POS: " << playerInfo->GetPos();
+	ss << "Health: " << playerInfo->playerHealth;
 	textObj[1]->SetText(ss.str());
 
-
+	ss.str("");
+	ss << "Score: " << playerInfo->playerScore;
+	textObj[2]->SetText(ss.str());
 
 	std::ostringstream ss1;
 	ss1.precision(10);
-	//ss1 << "Player:" << playerInfo->GetPos();
-	//textObj[2]->SetText(ss1.str());
+	
 	ss1.str("");
-	ss1 << "TIME: " << elasped;
-	textObj[2]->SetText(ss1.str());
-
-	ss1.str("");
-	ss1 << "Player Health: " << playerInfo->playerHealth;
-	textObj[4]->SetText(ss1.str());
-
-	ss1.str("");
-	ss1 << "Weapon: " << playerInfo->GetWeaponName();
+	ss1 << playerInfo->GetWeaponName();
 	textObj[5]->SetText(ss1.str());
 
 	ss1.str("");
@@ -567,8 +556,8 @@ void SceneText::Update(double dt)
 	textObj[6]->SetText(ss1.str());
 
 	ss1.str("");
-	ss1 << "Score: " << playerInfo->playerScore;
-	textObj[3]->SetText(ss1.str());
+	ss1 << "TIME: " << elasped << "s";
+	textObj[8]->SetText(ss1.str());
 
 	ss1.str("");
 	ss1 << "Wave: " << waveNo;

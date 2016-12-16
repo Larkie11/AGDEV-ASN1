@@ -46,9 +46,9 @@ private:
 	int currWaveEnemy = 0;
 	unsigned  elasped = 0;
 	int wave1 = 40;
-	int wave2 = 50;
-	int wave3 = 80;
-	int wave4 = 130;
+	int wave2 = 60;
+	int wave3 = 90;
+	int wave4 = 140;
 	int survive = 200;
 	CEnemy* theEnemy;
 	static SceneText* sInstance; // The pointer to the object that gets registered
