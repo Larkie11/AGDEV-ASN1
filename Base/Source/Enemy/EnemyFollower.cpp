@@ -25,7 +25,7 @@ EnemyFollower::EnemyFollower() : GenericEntity(NULL)
 	this->InitLOD("Android_high", "Android_mid", "Android_mid");
 	//Initialise the collider
 	this->SetCollider(true);
-	this->SetAABB(Vector3(2, 2, 2), Vector3(-2, -2, -2));
+	this->SetAABB(Vector3(3, 3, 3), Vector3(-3, -3, -3));
 	this->IsEnemy(true);
 	position.SetZero();
 	maxBoundary.Set(1, 1, 1);

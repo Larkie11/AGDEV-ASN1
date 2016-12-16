@@ -342,6 +342,21 @@ void SceneText::Init()
 	groundEntity->SetGrids(Vector3(10.0f, 1.0f, 10.0f));
 	playerInfo->SetTerrain(groundEntity);
 	
+	for (int i = 0; i < 3; i++)
+	{
+		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 250)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
+		theEnemy->SetNumOfFollowers(0);
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
+		theEnemy->SetNumOfFollowers(1);
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
+		theEnemy->SetNumOfFollowers(2);
+	}
 /*for (int i = 0; i < 10;)
 	{
 		theEnemy = new CEnemy();

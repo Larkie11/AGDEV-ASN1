@@ -62,14 +62,13 @@ void CEnemy::Init(void)
 	//Set boundary
 	//enemyHand = new CEnemy();
 	CSceneNode* newNode = CSceneGraph::GetInstance()->AddNode(ez);
-
 	enemyNode = newNode->AddChild(this);
 	ef->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Android_high", "Android_mid", "Android_low");
 	ez->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "Body_high", "Body_mid", "Body_low");
-	ea->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "robot1_high", "robot1_mid", "robot1_mid");
 	ez->SetAABB(Vector3(5, 5, 5), Vector3(-5, -5, -5));
+	ea->Init(position, target, m_dSpeed - 0.5, m_pTerrain, "robot1_high", "robot1_mid", "robot1_mid");
 	node = enemyNode->AddChild(ef);
-	node = enemyNode->AddChild(ez);
+	node = enemyNode->AddChild(ea);
 }
 
 
@@ -136,6 +135,7 @@ void CEnemy::Update(double dt)
 	Constrain();	
 	distance = (position - target).LengthSquared();
 	ez->SetPos(Vector3(position.x + 1, position.y - 8, position.z));
+	ez->SetCollider(true);
 
 	if (follow == 1)
 	{
