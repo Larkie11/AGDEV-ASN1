@@ -98,8 +98,6 @@ void CGrid::Render(void)
 		RenderHelper::RenderMesh(theMesh);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		//RenderHelper::RenderMesh(theMesh);				
 		Vector3 pos = CPlayerInfo::GetInstance()->GetPos();
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);				
 		if (min.x < pos.x && max.x > pos.x &&
@@ -107,12 +105,6 @@ void CGrid::Render(void)
 		{
 			RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GROUND"));
 		}
-		else
-		{
-			//RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GREEN"));
-		}
-		//RenderHelper::RenderMesh(theMesh);
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 }
 

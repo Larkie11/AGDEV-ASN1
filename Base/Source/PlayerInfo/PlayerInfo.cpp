@@ -441,7 +441,6 @@ void CPlayerInfo::Update(double dt)
 	{
 		Vector3 viewUV = (target - position).Normalized();
 		Vector3 rightUV;
-
 		{
 			float yaw = (float)(-m_dSpeed * camera_yaw * (float)dt);
 			Mtx44 rotation;
