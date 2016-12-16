@@ -312,7 +312,7 @@ void SceneText::Init()
 	}
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
-	anotherCube->SetAABB(Vector3(13.f, 10.f, 13.f), Vector3(-13.f, -10.f, -13.f));
+	anotherCube->SetAABB(Vector3(23.f, 10.f, 20.f), Vector3(-23.f, -10.f, -20.f));
 	anotherCube->InitLOD("Camp_high", "Camp_mid", "Camp_low");
 	anotherCube->IsEnemy(false);
 	anotherCube->IsCamp("Camp");
@@ -342,21 +342,18 @@ void SceneText::Init()
 	groundEntity->SetGrids(Vector3(10.0f, 1.0f, 10.0f));
 	playerInfo->SetTerrain(groundEntity);
 	
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 250)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
 		theEnemy->SetNumOfFollowers(0);
 	}
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
 		theEnemy->SetNumOfFollowers(1);
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
-		theEnemy->SetNumOfFollowers(2);
-	}
+	theEnemy = Create::Enemy(Vector3(Math::RandIntMinMax(-250, 250), 0.0f, Math::RandIntMinMax(-250, 240)), Vector3(Math::RandIntMinMax(-10, 10), 0.0f, Math::RandIntMinMax(-10, 10)), 0, groundEntity);
+	theEnemy->SetNumOfFollowers(2);
 /*for (int i = 0; i < 10;)
 	{
 		theEnemy = new CEnemy();
@@ -382,7 +379,6 @@ void SceneText::Init()
 	}
 	textObj[9] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 140, Application::GetInstance().GetWindowHeight() / 3.5, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
 	textObj[10] = Create::Text2DObject("text", Vector3(-halfWindowWidth + 100, Application::GetInstance().GetWindowHeight() / 3, 0.0f), "", Vector3(fontSize, fontSize, fontSize), Color(1.0f, 0.0f, 0.0f));
-	textObj[0]->SetText("HELLO WORLD");
 
 	sound.playMusic("Music//Background.mp3");
 }
@@ -541,8 +537,13 @@ void SceneText::Update(double dt)
 	std::ostringstream ss;
 	ss.precision(5);
 	float fps = (float)(1.f / dt);
+	ss << "POS: " << fps;
+	textObj[0]->SetText(ss.str());
+
+	ss.str("");
 	ss << "POS: " << playerInfo->GetPos();
 	textObj[1]->SetText(ss.str());
+
 
 
 	std::ostringstream ss1;
