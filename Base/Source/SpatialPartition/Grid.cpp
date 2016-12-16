@@ -105,7 +105,7 @@ void CGrid::Render(void)
 		if (min.x < pos.x && max.x > pos.x &&
 			min.z < pos.z && max.z > pos.z)
 		{
-			RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GREEN"));
+			RenderHelper::RenderMesh(MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GROUND"));
 		}
 		else
 		{

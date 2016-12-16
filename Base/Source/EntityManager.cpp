@@ -419,13 +419,13 @@ bool EntityManager::CheckForCollision(void)
 									{
 										sound.playSE("Music//Robot.mp3");
 										thatEntity->SetIsDone(true);
-										CPlayerInfo::GetInstance()->playerHealth -= 20;
+										CPlayerInfo::GetInstance()->playerHealth -= 10;
 									}
 									else if (thatEntity->GetIsCamp() == "Camp")
 									{
 										sound.playSE("Music//Robot.mp3");
 										thisEntity->SetIsDone(true);
-										CPlayerInfo::GetInstance()->playerHealth -= 20;
+										CPlayerInfo::GetInstance()->playerHealth -= 10;
 									}
 									else
 									{

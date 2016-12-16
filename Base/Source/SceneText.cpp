@@ -149,7 +149,8 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateCube("cubeSG", Color(1.0f, 0.64f, 0.0f), 1.0f);
 	MeshBuilder::GetInstance()->GenerateOBJ("gun", "OBJ//gun.obj");
 	MeshBuilder::GetInstance()->GetMesh("gun")->textureID = LoadTGA("Image//gun.tga");
-	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH_GREEN", Color(0, 1, 0), 1.f);
+	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH_GROUND", Color(1, 1, 1), 1.f);
+	MeshBuilder::GetInstance()->GetMesh("GRIDMESH_GROUND")->textureID = LoadTGA("Image//ground2.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("windmillstick", "OBJ//windmillstick.obj");
 	MeshBuilder::GetInstance()->GetMesh("windmillstick")->textureID = LoadTGA("Image//windmillstick.tga");
@@ -227,10 +228,8 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("shotgunB", "Obj//shotgunbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("shotgunB")->textureID = LoadTGA("Image//shotgunbullet.tga");
 
-	MeshBuilder::GetInstance()->GenerateOBJ("tree_mid", "Obj//tree_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("tree_mid")->textureID = LoadTGA("Image//tree_mid.tga");
-	MeshBuilder::GetInstance()->GenerateOBJ("tree_low", "Obj//tree_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("tree_low")->textureID = LoadTGA("Image//tree_low.tga");
+	MeshBuilder::GetInstance()->GenerateOBJ("tree", "Obj//tree_mid.obj");
+	MeshBuilder::GetInstance()->GetMesh("tree")->textureID = LoadTGA("Image//tree_mid.tga");
 	
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_FRONT", Color(1, 1, 1), 1.f);
 	MeshBuilder::GetInstance()->GenerateQuad("SKYBOX_BACK", Color(1, 1, 1), 1.f);
@@ -246,6 +245,7 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GetMesh("SKYBOX_BOTTOM")->textureID = LoadTGA("Image//SkyBox//skybox_bottom.tga");
 	MeshBuilder::GetInstance()->GenerateRay("laser", 10.0f);
 	MeshBuilder::GetInstance()->GenerateQuad("GRIDMESH", Color(1, 1, 1), 0.f);
+	
 
 	// Set up the Spatial Partition and pass it to the EntityManager to manage
 	CSpatialPartition::GetInstance()->Init(100, 100, 10, 10);
@@ -299,12 +299,17 @@ void SceneText::Init()
 	GenericEntity* RobotCampN = Create::Entity("Robot_camp1_high", Vector3(-159.f, -5.f, -200.f), Vector3(3.f, 3.f, 3.f));
 	RobotCampN->InitLOD("Robot_camp1_high", "Robot_camp1_mid", "Robot_camp1_low");
 
-	GenericEntity* tree1 = Create::Entity("tree_mid", Vector3(-300.f, 0.f, -200.f), Vector3(3.f, 3.f, 3.f));
-	GenericEntity* tree2 = Create::Entity("tree_mid", Vector3(300.f, 0.f, 250.f), Vector3(3.f, 3.f, 3.f));
-	GenericEntity* tree3 = Create::Entity("tree_mid", Vector3(-150.f, 0.f, 20.f), Vector3(3.f, 3.f, 3.f));
-	GenericEntity* tree4 = Create::Entity("tree_mid", Vector3(-250.f, 0.f, -50.f), Vector3(3.f, 3.f, 3.f));
+
 	//tree1->InitLOD("tree_mid", "tree_mid", "tree_low");
 
+	for (int i = 0; i < 30; i++)
+	{
+		GenericEntity* tree = Create::Entity("tree", Vector3(Math::RandIntMinMax(-300, 300), 0.0f, Math::RandIntMinMax(-300, 350)), Vector3(3.f, 3.f, 3.f));
+	}
+	for (int i = 0; i < 30; i++)
+	{
+		GenericEntity* tree2 = Create::Entity("tree", Vector3(Math::RandIntMinMax(-300, 300), 0.0f, Math::RandIntMinMax(-300, -350)), Vector3(3.f, 3.f, 3.f));
+	}
 	GenericEntity* anotherCube = Create::Entity("Camp_high", Vector3(0.0f, -5.f, 0.0f));
 	anotherCube->SetCollider(true);
 	anotherCube->SetAABB(Vector3(13.f, 10.f, 13.f), Vector3(-13.f, -10.f, -13.f));
