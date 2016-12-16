@@ -135,7 +135,7 @@ void CEnemy::Update(double dt)
 	//enemyHand->SetPos(position - 10);
 	Constrain();	
 	distance = (position - target).LengthSquared();
-	ez->SetPos(Vector3(position.x + 1, position.y - 8, position.z));
+	ez->SetPos(Vector3(position.x, position.y - 5.5, position.z));
 
 	if (follow == 1)
 	{

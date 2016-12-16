@@ -166,22 +166,22 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_high", "Obj//Camp_high.obj"); //LOD MODEL 1
 	MeshBuilder::GetInstance()->GetMesh("Camp_high")->textureID = LoadTGA("Image//wood_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_mid", "Obj//Camp_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Camp_mid")->textureID = LoadTGA("Image//wood_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Camp_mid")->textureID = LoadTGA("Image//wood_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Camp_low", "Obj//Camp_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Camp_low")->textureID = LoadTGA("Image//wood_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Camp_low")->textureID = LoadTGA("Image//wood_high.tga");
 	
 	MeshBuilder::GetInstance()->GenerateOBJ("Head_high", "Obj//Head_high.obj"); //LOD MODEL 2 (Seperated into head and body for scene node)
 	MeshBuilder::GetInstance()->GetMesh("Head_high")->textureID = LoadTGA("Image//head_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Head_mid", "Obj//Head_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Head_mid")->textureID = LoadTGA("Image//head_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Head_mid")->textureID = LoadTGA("Image//head_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Head_low", "Obj//Head_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Head_low")->textureID = LoadTGA("Image//head_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Head_low")->textureID = LoadTGA("Image//head_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Body_high", "Obj//body_high.obj");
 	MeshBuilder::GetInstance()->GetMesh("Body_high")->textureID = LoadTGA("Image//body_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Body_mid", "Obj//body_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Body_mid")->textureID = LoadTGA("Image//body_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Body_mid")->textureID = LoadTGA("Image//body_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Body_low", "Obj//body_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Body_low")->textureID = LoadTGA("Image//body_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Body_low")->textureID = LoadTGA("Image//body_high.tga");
 
 	//MeshBuilder::GetInstance()->GenerateOBJ("Head", "Obj//Head.obj");
 	//MeshBuilder::GetInstance()->GenerateOBJ("Body", "Obj//Body.obj");
@@ -191,37 +191,37 @@ void SceneText::Init()
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_high", "Obj//robotspawncamp1_high.obj"); //LOD MODEL 3
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_high")->textureID = LoadTGA("Image//robotspawncamp1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_mid", "Obj//robotspawncamp1_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_mid")->textureID = LoadTGA("Image//robotspawncamp1_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_mid")->textureID = LoadTGA("Image//robotspawncamp1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp1_low", "Obj//robotspawncamp1_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_low")->textureID = LoadTGA("Image//robotspawncamp1_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp1_low")->textureID = LoadTGA("Image//robotspawncamp1_high.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_high", "Obj//robotspawncamp2_high.obj"); //LOD MODEL 4
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_high")->textureID = LoadTGA("Image//robotspawncamp2_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_mid", "Obj//robotspawncamp2_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_mid")->textureID = LoadTGA("Image//robotspawncamp2_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_mid")->textureID = LoadTGA("Image//robotspawncamp2_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp2_low", "Obj//robotspawncamp2_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_low")->textureID = LoadTGA("Image//robotspawncamp2_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp2_low")->textureID = LoadTGA("Image//robotspawncamp2_high.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_high", "Obj//robotspawncamp3_high.obj"); //LOD MODEL 5
 	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_high")->textureID = LoadTGA("Image//robotspawncamp3_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_mid", "Obj//robotspawncamp3_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_mid")->textureID = LoadTGA("Image//robotspawncamp3_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_mid")->textureID = LoadTGA("Image//robotspawncamp3_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Robot_camp3_low", "Obj//robotspawncamp3_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_low")->textureID = LoadTGA("Image//robotspawncamp3_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Robot_camp3_low")->textureID = LoadTGA("Image//robotspawncamp3_high.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_high", "Obj//robot1_high.obj"); //LOD MODEL 6
 	MeshBuilder::GetInstance()->GetMesh("robot1_high")->textureID = LoadTGA("Image//ROBOT1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_mid", "Obj//robot1_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("robot1_mid")->textureID = LoadTGA("Image//ROBOT1_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("robot1_mid")->textureID = LoadTGA("Image//ROBOT1_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("robot1_low", "Obj//robot1_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("robot1_low")->textureID = LoadTGA("Image//ROBOT1_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("robot1_low")->textureID = LoadTGA("Image//ROBOT1_high.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_high", "Obj//android_high.obj"); //LOD MODEL 7
 	MeshBuilder::GetInstance()->GetMesh("Android_high")->textureID = LoadTGA("Image//android_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_mid", "Obj//android_mid.obj");
-	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_mid.tga");
+	MeshBuilder::GetInstance()->GetMesh("Android_mid")->textureID = LoadTGA("Image//android_high.tga");
 	MeshBuilder::GetInstance()->GenerateOBJ("Android_low", "Obj//android_low.obj");
-	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_low.tga");
+	MeshBuilder::GetInstance()->GetMesh("Android_low")->textureID = LoadTGA("Image//android_high.tga");
 
 	MeshBuilder::GetInstance()->GenerateOBJ("pistolB", "Obj//pistolbullet.obj");
 	MeshBuilder::GetInstance()->GetMesh("pistolB")->textureID = LoadTGA("Image//pistolbullet.tga");
